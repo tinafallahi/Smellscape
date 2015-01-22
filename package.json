@@ -1,0 +1,30 @@
+{
+  "name": "Smellscape",
+  "version": "1.0.0",
+  "description": "Mobile app for smell experiences in different cities.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "pg": "4.x",
+    "express": "~4.9.x"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tinafallahi/Smellscape"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": {
+    "name":"Tina Fallahi",
+    "email":"fallahi.tina@gmail.com",
+  },
+  "license": "MIT"
+}
