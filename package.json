@@ -22,9 +22,5 @@
     "heroku",
     "express"
   ],
-  "author": {
-    "name":"Tina Fallahi",
-    "email":"fallahi.tina@gmail.com",
-  },
   "license": "MIT"
 }
