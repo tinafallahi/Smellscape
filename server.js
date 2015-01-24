@@ -1,10 +1,33 @@
 var pg = require('pg');
 var express = require('express');
+var http = require('http');
+var config = require('./server/config');
+
+
+/////// APP SETUP ///////
 var app = express();
+server = http.createServer(app);
 
-app.set('port', (process.env.PORT || 5000));
+// Logging 
+logger = {
+  debug: config.debug,
+  warn: config.warn,
+  error: config.error
+};
+
+app.use(function(req, res, next) {
+  logger.debug(req.method, req.url);
+  next();
+});
+
+app.use(function(err, req, res, next) {
+  logger.error(err.stack);
+  res.status(500).send(err.message);
+});
 //app.use(express.static(__dirname + '/public'));
+//app.set('bookshelf', bookshelf);
 
+/////// ROUTES ///////
 app.get('/', function (request, response) {
   response.send("Welcome to Smellscape!");
 });
@@ -21,6 +44,9 @@ app.get('/db', function(request, response) {
   });
 });
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'));
+/////// SERVER START ///////
+app.set('port', (process.env.PORT || 5000));
+
+server.listen(app.get('port'), function() {
+  console.log("Smellscape app is running at localhost:" + app.get('port'));
 });
