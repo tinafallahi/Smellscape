@@ -30,7 +30,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.set('bookshelf', bookshelf);
-//app.use(express.static(__dirname + '/public'));
 
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -46,6 +45,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 // elsewhere, to use the bookshelf client:
 var bookshelf = app.get('bookshelf');
+//app.use(express.static(__dirname + '/public'));
 
 /////// ROUTES ///////
 app.get('/', function (request, response) {
