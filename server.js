@@ -6,6 +6,7 @@ var knex = require('knex')(config.knex_options);
 var bookshelf = require('bookshelf')(knex);
 var bodyParser = require('body-parser');
 var Promise = require('bluebird');
+var models = require('./server/models')(bookshelf);
 
 /////// APP SETUP ///////
 var app = express();
@@ -39,40 +40,20 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded());
- 
 // parse application/json
 app.use(bodyParser.json());
- 
 // parse application/vnd.api+json as json
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
- 
 // elsewhere, to use the bookshelf client:
 var bookshelf = app.get('bookshelf');
-
-// {our model definition code goes here}
-var User = bookshelf.Model.extend({
-  tableName: 'users'
-});
 
 /////// ROUTES ///////
 app.get('/', function (request, response) {
   response.send("Welcome to Smellscape!");
 });
 
-/*app.get('/db', function(request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM users', function(err, result) {
-      done();
-      if (err)
-      { console.error(err); response.send("Error " + err); }
-      else 
-      { response.send(result.rows); }
-    });
-  });
-});*/
-
 app.get('/api/users', function(req, res) {
-  new User().fetchAll()
+  new models.User().fetchAll()
     .then(function(users) {
       res.send(users.toJSON());
     }).catch(function(error) {
