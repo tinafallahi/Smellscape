@@ -5,13 +5,13 @@ exports.db_url = process.env.DATABASE_URL || 'postgresql://localhost/smellscape'
 exports.DEBUG = DEBUG;
 exports.SQL_DEBUG = false;
 
-/*exports.knex_options = {
+exports.knex_options = {
   client: exports.db_client,
   connection: exports.db_url,
   debug: exports.SQL_DEBUG
 };
 
-if (process.env.SF_OAUTH_CLIENT_ID) {
+/*if (process.env.SF_OAUTH_CLIENT_ID) {
   salesforce = {
     username: process.env.SF_USERNAME,
     password: process.env.SF_PASSWORD,
