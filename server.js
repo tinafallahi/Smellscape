@@ -7,6 +7,7 @@ var bookshelf = require('bookshelf')(knex);
 var bodyParser = require('body-parser');
 var Promise = require('bluebird');
 var models = require('./server/models')(bookshelf);
+var url = require('url');
 
 /////// APP SETUP ///////
 var app = express();
@@ -56,6 +57,39 @@ app.get('/api/users', function(req, res) {
   new models.User().fetchAll()
     .then(function(users) {
       res.send(users.toJSON());
+    }).catch(function(error) {
+      console.log(error);
+      res.send('An error occured');
+    });
+})
+
+app.get('/user/:userId', function(req, res) {
+  new models.User({userid: 1})
+    .fetch()
+    .then(function(user) {
+      res.send(user.toJSON());
+    }).catch(function(error) {
+      console.log(error);
+      res.send('An error occured');
+    });
+})
+
+app.get('/smells', function(req, res) {
+  new models.Smell().fetchAll()
+    .then(function(smells) {
+      res.send(smells.toJSON());
+    }).catch(function(error) {
+      console.log(error);
+      res.send('An error occured');
+    });
+})
+
+app.get('/smells/:id', function(req, res) {
+  console.log(req.params.id);
+  new models.Smell({smellid: req.params.id})
+    .fetch()
+    .then(function(smell) {
+      res.send(smell.toJSON());
     }).catch(function(error) {
       console.log(error);
       res.send('An error occured');
