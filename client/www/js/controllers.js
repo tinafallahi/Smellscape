@@ -1,8 +1,6 @@
-angular.module('starter.controllers', ['starter.services'])
+angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 'ngGeolocation'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  // Form data for the login modal
-  $scope.loginData = {};
+.controller('AppCtrl', function($scope, $ionicModal) {
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -11,25 +9,9 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.modal = modal;
   });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
   };
 
   // Log in via Facebook 
@@ -69,9 +51,35 @@ angular.module('starter.controllers', ['starter.services'])
             alert('An error occurred while sharing this smell on Facebook');
         }
     });
-};
+  };
 })
 
 .controller('UserCtrl', function($scope, $stateParams, User) {
     $scope.user = User.get({userId: $stateParams.userId});
+})
+
+// TODO: Params might be missing something.
+.controller('WalksCtrl', function($scope, $geolocation) {
+    /*$scope.myPosition = $geolocation.getCurrentPosition({
+            timeout: 60000
+    });
+
+    $scope.$watch('myPosition.coords', function(newValue, oldValue) {
+      $scope.myPosition = $geolocation.getCurrentPosition({
+            timeout: 60000
+      });*/
+      $scope.map = {
+        defaults: {
+          // http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
+            tileLayer: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+            zoomControlPosition: 'topright'
+        }
+        /*center: {
+            lat: newValue.latitude,
+            lng: newValue.longitude,
+            zoom: 16
+        }*/
+      };
+    }, true);
+    
 });
