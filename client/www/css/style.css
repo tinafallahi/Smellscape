@@ -11,8 +11,12 @@
 }
 
 /* WELCOME PAGE STYLES */
-.item.logo {
+.item.info {
+	/* Might have something to add later for aligning issues. */
+}
 
+.item.logo {
+	/* Might have something to add later for aligning issues. */
 }
 
 .item.welcome, .item.login {
@@ -20,6 +24,16 @@
   	padding-right: 0px;
 	padding-top: 0px;
   	padding-bottom: 0px;
+}
+
+.welcome-info-button {
+	height: 30px;
+	width: 30px;
+	background-image: url("../img/info-button.png");
+	background-color: Transparent;
+  	background-repeat: no-repeat center center fixed;
+  	background-size: 100% 100%;
+  	border: 0px solid;
 }
 
 .welcome-logo {

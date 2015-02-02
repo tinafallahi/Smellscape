@@ -48,6 +48,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive'])
       }
     }
   })
+
+  .state('app.home', {
+    url: "/home",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/home.html",
+      }
+    }
+  })
+
     .state('app.smells', {
   url: "/smells",
   views: {

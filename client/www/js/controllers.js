@@ -14,19 +14,24 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     $scope.modal.show();
   };
 
+  $scope.infoClicked = function(message) {
+        alert(message);
+  };
+
   // Log in via Facebook 
   $scope.fbLogin = function() {
     openFB.login(
         function(response) {
             if (response.status === 'connected') {
                 console.log('Facebook login succeeded');
-                $scope.closeLogin();
+                // TODO: Replace with navigate to home
+                login.close();
             } else {
                 alert('Facebook login failed');
             }
         },
         {scope: 'email,publish_actions'});
-  }
+  };
 
   /*$scope.getCurrentPosition = function() {
     cordovaGeolocationService.getCurrentPosition(function(position){
@@ -69,6 +74,9 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
         }
     });
   };
+})
+
+.controller('InfoCtrl', function($scope) {
 })
 
 .controller('UserCtrl', function($scope, $stateParams, User) {
