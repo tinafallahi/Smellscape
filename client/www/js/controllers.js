@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 'ngGeolocation'])
+angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 'cordovaGeolocationModule'])
 
 .controller('AppCtrl', function($scope, $ionicModal) {
 
@@ -26,7 +26,24 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
             }
         },
         {scope: 'email,publish_actions'});
-}
+  }
+
+  /*$scope.getCurrentPosition = function() {
+    cordovaGeolocationService.getCurrentPosition(function(position){
+        alert(
+            'Latitude: '          + position.coords.latitude          + '\n' +
+            'Longitude: '         + position.coords.longitude         + '\n' +
+            'Altitude: '          + position.coords.altitude          + '\n' +
+            'Accuracy: '          + position.coords.accuracy          + '\n' +
+            'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+            'Heading: '           + position.coords.heading           + '\n' +
+            'Speed: '             + position.coords.speed             + '\n' +
+            'Timestamp: '         + position.timestamp                + '\n'
+        );
+    });
+  };
+
+  $scope.getCurrentPosition();*/
 })
 
 .controller('SmellsCtrl', function($scope, Smell) {
@@ -58,28 +75,17 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     $scope.user = User.get({userId: $stateParams.userId});
 })
 
-// TODO: Params might be missing something.
-.controller('WalksCtrl', function($scope, $geolocation) {
-    /*$scope.myPosition = $geolocation.getCurrentPosition({
-            timeout: 60000
-    });
-
-    $scope.$watch('myPosition.coords', function(newValue, oldValue) {
-      $scope.myPosition = $geolocation.getCurrentPosition({
-            timeout: 60000
-      });*/
+.controller('WalksCtrl', function($scope) {
       $scope.map = {
         defaults: {
           // http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
             tileLayer: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
             zoomControlPosition: 'topright'
-        }
-        /*center: {
-            lat: newValue.latitude,
-            lng: newValue.longitude,
+        },
+        center: {
+            lat: 51.50,
+            lng: -0.12,
             zoom: 16
-        }*/
+        }
       };
-    }, true);
-    
 });
