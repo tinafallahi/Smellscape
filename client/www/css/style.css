@@ -65,7 +65,7 @@
 .home-line-one {
   height: 1px;
   width: 200px;
-  margin-top: 22%;
+  margin-top: 2%;
   margin-left: 20%;
   margin-right: 20%;
   background-image: url("../img/home-line.jpg");
@@ -78,6 +78,7 @@
 .home-line {
   height: 1px;
   width: 200px;
+  padding-top: 0px;
   margin-left: 20%;
   margin-right: 20%;
   background-image: url("../img/home-line.jpg");
@@ -92,6 +93,9 @@
   width: 100px;
   margin-left: 33%;
   margin-top: 1px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
   background-image: url("../img/home-add-text.png");
   background-repeat: no-repeat center center fixed;
   background-size: 100% 100%;
@@ -103,6 +107,7 @@
   width: 100px;
   margin-left: 33%;
   margin-top: 1px;
+  padding-top: 0px;
   background-image: url("../img/find-text-home.png");
   background-repeat: no-repeat center center fixed;
   background-size: 100% 100%;
@@ -114,6 +119,7 @@
   width: 100px;
   margin-left: 33%;
   margin-top: 1px;
+  padding-top: 0px;
   background-image: url("../img/walks-text-home.png");
   background-repeat: no-repeat center center fixed;
   background-size: 100% 100%;
@@ -125,6 +131,7 @@
   width: 50px;
   margin-left: 40%;
   margin-bottom: 1px;
+  padding-top: 0px;
   background-image: url("../img/add-smell-home.png");
   background-color: Transparent;
     background-repeat: no-repeat center center fixed;
@@ -137,6 +144,7 @@
   width: 50px;
   margin-left: 40%;
   margin-bottom: 1px;
+  padding-top: 0px;
   background-image: url("../img/find-smell-home.png");
   background-color: Transparent;
     background-repeat: no-repeat center center fixed;
@@ -149,9 +157,15 @@
   width: 50px;
   margin-left: 40%;
   margin-bottom: 1px;
+  padding-top: 0px;
   background-image: url("../img/walks-home.png");
   background-color: Transparent;
     background-repeat: no-repeat center center fixed;
     background-size: 100% 100%;
     border: 0px solid;
 }
+
+/*.bar-stable {
+  background: transparent;
+  border: 0px solid;
+}*/

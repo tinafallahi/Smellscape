@@ -20,7 +20,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   };
 })
 
-.controller('AppCtrl', function($scope, $ionicModal) {
+.controller('AppCtrl', function($scope, $ionicModal, $state) {
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -37,6 +37,18 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   $scope.infoClicked = function(message) {
         alert(message);
   };
+
+  $scope.add = function() {
+    $state.go('app.addsmell');
+  }
+
+  $scope.find = function() {
+    $state.go('app.smells');
+  }
+
+  $scope.walks = function() {
+    $state.go('app.walks');
+  }
 
   // Log in via Facebook 
   $scope.fbLogin = function() {
@@ -94,9 +106,6 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
         }
     });
   };
-})
-
-.controller('InfoCtrl', function($scope) {
 })
 
 .controller('UserCtrl', function($scope, auth, $state, store) {

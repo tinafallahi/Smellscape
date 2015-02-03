@@ -1,9 +1,9 @@
 angular.module('starter.services', ['ngResource'])
 
 .factory('Smell', function ($resource) {
-    return $resource('http://localhost:5000/smells/:smellId');
+    return $resource('http://smellscape.herokuapp.com//smells/:smellId');
 })
 
 .factory('User', function ($resource) {
-    return $resource('http://localhost:5000/user/:userId');
+    return $resource('http://smellscape.herokuapp.com//user/:userId');
 });
