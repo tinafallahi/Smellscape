@@ -44,7 +44,7 @@
   	border: 0px solid;
 }
 
-.welcome-bar{
+.welcome-bar {
 	height: 80px;
   	background-image: url("../img/welcomebar.jpg");
   	background-repeat: no-repeat center center fixed;
@@ -53,11 +53,105 @@
   	margin-bottom: 1px;
 }
 
-.button.button-block.button-positive.login{
+.button.button-block.button-positive.login {
 	height: 80px;
   	background-image: url("../img/loginbutton.jpg");
   	background-repeat: no-repeat center center fixed;
   	background-size: 100% 100%;
   	border: 0px solid;
   	margin-top: 1px;
+}
+
+.home-line-one {
+  height: 1px;
+  width: 200px;
+  margin-top: 22%;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-image: url("../img/home-line.jpg");
+  background-repeat: no-repeat center center fixed;
+  background-size: 100% 100%;
+  border: 0px solid;
+  float: center;
+}
+
+.home-line {
+  height: 1px;
+  width: 200px;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-image: url("../img/home-line.jpg");
+  background-repeat: no-repeat center center fixed;
+  background-size: 100% 100%;
+  border: 0px solid;
+  float: center;
+}
+
+.home-add-text {
+  height: 15px;
+  width: 100px;
+  margin-left: 33%;
+  margin-top: 1px;
+  background-image: url("../img/home-add-text.png");
+  background-repeat: no-repeat center center fixed;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.home-find-text {
+  height: 15px;
+  width: 100px;
+  margin-left: 33%;
+  margin-top: 1px;
+  background-image: url("../img/find-text-home.png");
+  background-repeat: no-repeat center center fixed;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.home-walks-text {
+  height: 15px;
+  width: 100px;
+  margin-left: 33%;
+  margin-top: 1px;
+  background-image: url("../img/walks-text-home.png");
+  background-repeat: no-repeat center center fixed;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.home-add-button {
+  height: 50px;
+  width: 50px;
+  margin-left: 40%;
+  margin-bottom: 1px;
+  background-image: url("../img/add-smell-home.png");
+  background-color: Transparent;
+    background-repeat: no-repeat center center fixed;
+    background-size: 100% 100%;
+    border: 0px solid;
+}
+
+.home-find-button {
+  height: 50px;
+  width: 50px;
+  margin-left: 40%;
+  margin-bottom: 1px;
+  background-image: url("../img/find-smell-home.png");
+  background-color: Transparent;
+    background-repeat: no-repeat center center fixed;
+    background-size: 100% 100%;
+    border: 0px solid;
+}
+
+.home-walks-button {
+  height: 50px;
+  width: 50px;
+  margin-left: 40%;
+  margin-bottom: 1px;
+  background-image: url("../img/walks-home.png");
+  background-color: Transparent;
+    background-repeat: no-repeat center center fixed;
+    background-size: 100% 100%;
+    border: 0px solid;
 }

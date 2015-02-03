@@ -99,8 +99,15 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
 .controller('InfoCtrl', function($scope) {
 })
 
-.controller('UserCtrl', function($scope, $stateParams, User) {
-    $scope.user = User.get({userId: $stateParams.userId});
+.controller('UserCtrl', function($scope, auth, $state, store) {
+    //$scope.user = User.get({userId: $stateParams.userId});
+    $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    $state.go('login');
+  }
 })
 
 .controller('WalksCtrl', function($scope) {
