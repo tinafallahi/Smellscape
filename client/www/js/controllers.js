@@ -1,5 +1,25 @@
 angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 'cordovaGeolocationModule'])
 
+.controller('LoginCtrl', function($scope, auth, $state, store) {
+  $scope.signin = function() {
+    auth.signin({
+    closable: true,
+    // This asks for the refresh token
+    // So that the user never has to log in again
+    authParams: {
+      scope: 'openid offline_access'
+    }
+  }, function(profile, idToken, accessToken, state, refreshToken) {
+    store.set('profile', profile);
+    store.set('token', idToken);
+    store.set('refreshToken', refreshToken);
+    $state.go('app.home');
+  }, function(error) {
+    console.log("There was an error logging in", error);
+  });
+  };
+})
+
 .controller('AppCtrl', function($scope, $ionicModal) {
 
   // Create the login modal that we will use later
