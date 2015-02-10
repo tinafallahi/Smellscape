@@ -8,6 +8,13 @@
 .list, .item {
 	background: transparent;
 	border: 0px solid;
+  color: #0E1025;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.input-label {
+  color: #0E1025;
 }
 
 /* WELCOME PAGE STYLES */
@@ -160,10 +167,109 @@
   padding-top: 0px;
   background-image: url("../img/walks-home.png");
   background-color: Transparent;
+  background-repeat: no-repeat center center fixed;
+  background-size: 100% 100%;
+  border: 0px solid;
+} 
+
+/****** ADD SMELL STYLES ********/
+
+.modal.add-smell {
+  background-color: #FAFAED;
+  opacity: 0.8;
+}
+
+legend {
+  font-size: 17px;
+}
+
+.field.smell-name {
+  padding-right: 1px;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-top: 1px;
+}
+
+.title.smell-name {
+  border: 0px solid;
+  width: 30%;
+  color: #0E1025;
+}
+
+.input.smell-name {
+  background-color: #FAFAED;
+  color: #E05346;
+}
+
+.title.smell-assoc {
+  border: 0px solid;
+  width: 46%;
+  color: #0E1025;
+}
+
+.input.smell-assoc {
+  background-color: #FAFAED;
+  color: #E05346;
+}
+
+.group.exp-cam {
+  margin-left: 4%;
+}
+
+.camera {
+  height: 20px;
+  width: 25px;
+  margin-left: 10%;
+  background-image: url("../img/camera.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+    border: 0px solid;
+}
+
+.radio.exp.left {
+  margin-left: 3%;
+}
+
+.radio.exp.right {
+  margin-left: 1%;
+}
+
+.done {
+  height: 30px;
+  width: 35px;
+  margin-left: 5%;
+  margin-top: 2%;
+  background-image: url("../img/done.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.cancel {
+  height: 30px;
+  width: 35px;
+  margin-left: 70%;
+  background-image: url("../img/cancel.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+/*.home-add-button {
+  height: 50px;
+  width: 50px;
+  margin-left: 40%;
+  margin-bottom: 1px;
+  padding-top: 0px;
+  background-image: url("../img/add-smell-home.png");
+  background-color: Transparent;
     background-repeat: no-repeat center center fixed;
     background-size: 100% 100%;
     border: 0px solid;
-}
+}*/
 
 /*.bar-stable {
   background: transparent;

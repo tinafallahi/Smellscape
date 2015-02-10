@@ -50,7 +50,8 @@ angular.module('starter', ['ionic',
     url: "/addsmell",
     views: {
       'menuContent': {
-        templateUrl: "templates/addsmell.html"
+        templateUrl: "templates/addsmell.html",
+        controller: 'AddSmellCtrl'
       }
     }
   })

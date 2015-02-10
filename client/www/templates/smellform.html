@@ -1,0 +1,40 @@
+<ion-modal-view class="modal add-smell">
+  <ion-content>
+    <form ng-submit="doLogin()">
+      <div class="list">
+        <label class="item smell-name">
+          <fieldset class="field smell-name">
+    		<legend class="title smell-name">SMELL NAME</legend>
+    		<input class="input smell-name" type="text" ng-model="loginData.username">
+		  </fieldset>
+        </label>
+        <label class="item">
+          <span class="input-label">SMELL EXPECTATION &nbsp; &nbsp; &nbsp; SMELL PHOTO</span>
+        </label>
+        <input class="radio exp left" type="radio" name="expectedness" value="expected"> Expected
+		<input class="radio exp right" type="radio" name="expectedness" value="unexpected"> Unexpected
+        <button class="camera"></button>
+        <label class="item">
+        	<span class="input-label">SMELL INTENSITY</span>
+        	<input type="range" value="7">
+        </label>
+        <label class="item">
+        	<span class="input-label">SMELL DURATION</span>
+        	<input type="range" value="7">
+        </label>
+        <label class="item">
+        	<span class="input-label">SMELL PREFERENCE</span>
+        	<input type="range" value="7">
+        </label>
+        <label class="item">
+          <fieldset class="field">
+    		<legend class="title smell-assoc">SMELL ASSOCIATION</legend>
+    		<textarea class=" input smell-assoc" rows="4"></textarea>
+		  </fieldset>
+        </label>
+        <button class="cancel" ng-click="closeAdd()"></button>
+        <button class="done" type="submit"></button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

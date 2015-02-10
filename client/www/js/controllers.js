@@ -21,14 +21,6 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
 })
 
 .controller('AppCtrl', function($scope, $ionicModal, $state) {
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
@@ -132,4 +124,63 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
             zoom: 16
         }
       };
+})
+
+.controller('AddSmellCtrl', function($scope, $ionicModal) {
+      $scope.map = {
+        defaults: {
+          // http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
+            tileLayer: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+            zoomControl: false
+        },
+        center: {
+            lat: 51.50,
+            lng: -0.12,
+            zoom: 16
+        }, 
+        events: {} 
+      };
+
+      var local_icons = {
+                defaultIcon: {},
+                smellIcon: {
+                    iconUrl: 'img/smell-marker.png',
+                    iconSize:     [38, 55], // size of the icon
+                    iconAnchor:   [22, 54], // point of the icon which will correspond to marker's location
+                }
+      }
+
+      $scope.markers = new Array();
+
+      $ionicModal.fromTemplateUrl('templates/smellform.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.modal = modal;
+      });
+
+      $scope.$on("leafletDirectiveMap.click", function(event, args){
+                // Create the login modal that we will use later
+                var leafEvent = args.leafletEvent;
+                if($scope.markers.length == 0) {
+                  $scope.markers.push({
+                      lat: leafEvent.latlng.lat,
+                      lng: leafEvent.latlng.lng,
+                      icon: local_icons.smellIcon,
+                      focus: true
+                  });
+                } else {
+                  var last = $scope.markers.pop();
+                  $scope.markers.push({
+                      lat: leafEvent.latlng.lat,
+                      lng: leafEvent.latlng.lng,
+                      icon: local_icons.smellIcon,
+                      focus: true
+                  });
+                }
+              $scope.modal.show();
+      });
+
+    $scope.closeAdd = function() {
+      $scope.modal.hide();
+    };
 });
