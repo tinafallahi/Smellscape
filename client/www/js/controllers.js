@@ -21,11 +21,6 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
 })
 
 .controller('AppCtrl', function($scope, $ionicModal, $state) {
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
   $scope.infoClicked = function(message) {
         alert(message);
   };
@@ -41,21 +36,6 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   $scope.walks = function() {
     $state.go('app.walks');
   }
-
-  // Log in via Facebook 
-  $scope.fbLogin = function() {
-    openFB.login(
-        function(response) {
-            if (response.status === 'connected') {
-                console.log('Facebook login succeeded');
-                // TODO: Replace with navigate to home
-                login.close();
-            } else {
-                alert('Facebook login failed');
-            }
-        },
-        {scope: 'email,publish_actions'});
-  };
 
   /*$scope.getCurrentPosition = function() {
     cordovaGeolocationService.getCurrentPosition(function(position){
@@ -153,9 +133,24 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       $scope.markers = new Array();
 
       $ionicModal.fromTemplateUrl('templates/smellform.html', {
+                  id: '1', 
                   scope: $scope
                 }).then(function(modal) {
-                  $scope.modal = modal;
+                  $scope.modalAdd = modal;
+      });
+
+      $ionicModal.fromTemplateUrl('templates/smellcheck.html', {
+                  id: '2',
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.modalCheck = modal;
+      });
+
+      $ionicModal.fromTemplateUrl('templates/smellshare.html', {
+                  id: '3',
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.modalShare = modal;
       });
 
       $scope.$on("leafletDirectiveMap.click", function(event, args){
@@ -177,10 +172,44 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
                       focus: true
                   });
                 }
-              $scope.modal.show();
+              $scope.modalAdd.show();
       });
 
     $scope.closeAdd = function() {
-      $scope.modal.hide();
+      $scope.modalAdd.hide();
+      $scope.modalCheck.hide();
+      $scope.modalShare.hide();
     };
+
+    $scope.continueAdd = function() {
+      $scope.modalAdd.hide();
+      // Add data into the form
+      $scope.modalCheck.show();
+    };
+
+    $scope.backToEdit = function() {
+      $scope.modalCheck.hide();
+      //$scope.modalAdd.show();
+    }
+
+    $scope.submitSmell = function() {
+      $scope.modalCheck.hide();
+      // Add data to db
+      $scope.modalShare.show();
+    }
+
+    $scope.smellDone = function() {
+      $scope.modalShare.hide();
+    }
+
+    $scope.shareOnFb = function() {
+      $scope.modalShare.hide();
+    }
+
+    $scope.$on('$destroy', function() {
+      console.log('Destroying modals...');
+      $scope.modalAdd.remove();
+      $scope.modalCheck.remove();
+      $scope.modalShare.remove();
+    });
 });

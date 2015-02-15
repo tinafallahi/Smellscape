@@ -256,6 +256,62 @@ legend {
   background-color: Transparent;
   background-size: 100% 100%;
   border: 0px solid;
+} 
+
+.edit {
+  height: 40px;
+  width: 45px;
+  margin-left: 50%;
+  margin-top: 2%;
+  background-image: url("../img/edit.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.submit {
+  height: 30px;
+  width: 100px;
+  margin-left: 5%;
+  margin-top: 2%;
+  background-image: url("../img/submit.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.share.cancel {
+  height: 30px;
+  width: 35px;
+  margin-left: 5%;
+  margin-top: 15%;
+  background-image: url("../img/cancel.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+
+}
+
+.button.share {
+  height: 40px;
+  width: 45px;
+  margin-left: 60%;
+  margin-top: 12%;
+  background-image: url("../img/share.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.share.smell-name {
+  width: 50%;
+  margin-right: 30%;
+  margin-top: 15%;
+  float: right;
 }
 
 /*.home-add-button {

@@ -1,11 +1,11 @@
 <ion-modal-view class="modal add-smell">
   <ion-content>
-    <form ng-submit="doLogin()">
+    <form ng-submit="continueAdd()">
       <div class="list">
         <label class="item smell-name">
           <fieldset class="field smell-name">
     		<legend class="title smell-name">SMELL NAME</legend>
-    		<input class="input smell-name" type="text" ng-model="loginData.username">
+    		<input class="input smell-name" type="text" ng-model="smell.description">
 		  </fieldset>
         </label>
         <label class="item">
@@ -29,7 +29,7 @@
         <label class="item">
           <fieldset class="field">
     		<legend class="title smell-assoc">SMELL ASSOCIATION</legend>
-    		<textarea class=" input smell-assoc" rows="4"></textarea>
+    		<textarea class=" input smell-assoc" rows="4" ng-model="smell.association"></textarea>
 		  </fieldset>
         </label>
         <button class="cancel" ng-click="closeAdd()"></button>
