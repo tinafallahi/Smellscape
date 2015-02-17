@@ -1,0 +1,9 @@
+{
+  "name": "Smellscape",
+  "description": "Mobile app for smell experiences in different cities.",
+  "repository": "https://github.com/tinafallahi/Smellscape",
+  "keywords": ["node", "express", "angularjs","ionic","force.com"],
+  "addons": [
+    "heroku-postgresql"
+  ]
+}

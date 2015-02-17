@@ -1,0 +1,286 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'when' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'when@^3.6.4', null ]
+6 verbose cache add name=undefined spec="when@^3.6.4" args=["when@^3.6.4",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'when@^3.6.4',
+7 verbose parsed url   path: 'when@^3.6.4',
+7 verbose parsed url   href: 'when@^3.6.4' }
+8 verbose cache add name="when" spec="^3.6.4" args=["when","^3.6.4"]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: '^3.6.4',
+9 verbose parsed url   path: '^3.6.4',
+9 verbose parsed url   href: '^3.6.4' }
+10 verbose addNamed [ 'when', '^3.6.4' ]
+11 verbose addNamed [ null, '>=3.6.4-0 <4.0.0-0' ]
+12 silly lockFile 765ce543-when-3-6-4 when@^3.6.4
+13 verbose lock when@^3.6.4 /Users/tinafallahi/.npm/765ce543-when-3-6-4.lock
+14 silly addNameRange { name: 'when', range: '>=3.6.4-0 <4.0.0-0', hasData: false }
+15 verbose request where is /when
+16 verbose request registry https://registry.npmjs.org/
+17 verbose request id f645a70c4acb1606
+18 verbose url raw /when
+19 verbose url resolving [ 'https://registry.npmjs.org/', './when' ]
+20 verbose url resolved https://registry.npmjs.org/when
+21 verbose request where is https://registry.npmjs.org/when
+22 info trying registry request attempt 1 at 17:08:35
+23 verbose etag "3T2IQC2OM2NE2O3801SWECKMZ"
+24 http GET https://registry.npmjs.org/when
+25 http 200 https://registry.npmjs.org/when
+26 silly registry.get cb [ 200,
+26 silly registry.get   { date: 'Tue, 17 Feb 2015 22:08:33 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"7W3GYY8OFONEAMHAFGJGTH5TW"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '103128',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '38',
+26 silly registry.get     'x-served-by': 'cache-jfk1023-JFK',
+26 silly registry.get     'x-cache': 'HIT',
+26 silly registry.get     'x-cache-hits': '1',
+26 silly registry.get     'x-timer': 'S1424210913.566328,VS0,VE0',
+26 silly registry.get     vary: 'Accept',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly addNameRange number 2 { name: 'when', range: '>=3.6.4-0 <4.0.0-0', hasData: true }
+28 silly addNameRange versions [ 'when',
+28 silly addNameRange   [ '1.2.0',
+28 silly addNameRange     '1.3.0',
+28 silly addNameRange     '1.4.0',
+28 silly addNameRange     '1.4.1',
+28 silly addNameRange     '1.4.2',
+28 silly addNameRange     '1.4.3',
+28 silly addNameRange     '1.4.4',
+28 silly addNameRange     '1.5.0',
+28 silly addNameRange     '1.5.1',
+28 silly addNameRange     '1.5.2',
+28 silly addNameRange     '1.6.0',
+28 silly addNameRange     '1.6.1',
+28 silly addNameRange     '1.7.0',
+28 silly addNameRange     '1.7.1',
+28 silly addNameRange     '1.8.0',
+28 silly addNameRange     '1.8.1',
+28 silly addNameRange     '2.0.0',
+28 silly addNameRange     '2.0.1',
+28 silly addNameRange     '2.1.0',
+28 silly addNameRange     '2.1.1',
+28 silly addNameRange     '2.2.0',
+28 silly addNameRange     '2.2.1',
+28 silly addNameRange     '2.3.0',
+28 silly addNameRange     '2.4.0',
+28 silly addNameRange     '2.5.0',
+28 silly addNameRange     '2.5.1',
+28 silly addNameRange     '2.6.0',
+28 silly addNameRange     '2.7.0',
+28 silly addNameRange     '2.7.1',
+28 silly addNameRange     '2.8.0',
+28 silly addNameRange     '3.0.0',
+28 silly addNameRange     '3.0.1',
+28 silly addNameRange     '3.1.0',
+28 silly addNameRange     '3.2.0',
+28 silly addNameRange     '3.2.1',
+28 silly addNameRange     '3.2.2',
+28 silly addNameRange     '3.2.3',
+28 silly addNameRange     '3.3.0',
+28 silly addNameRange     '3.3.1',
+28 silly addNameRange     '3.4.0',
+28 silly addNameRange     '3.4.1',
+28 silly addNameRange     '3.4.2',
+28 silly addNameRange     '3.4.3',
+28 silly addNameRange     '3.4.4',
+28 silly addNameRange     '3.4.5',
+28 silly addNameRange     '3.4.6',
+28 silly addNameRange     '3.5.0',
+28 silly addNameRange     '3.5.1',
+28 silly addNameRange     '3.5.2',
+28 silly addNameRange     '3.6.0',
+28 silly addNameRange     '3.6.1',
+28 silly addNameRange     '3.6.2',
+28 silly addNameRange     '3.6.3',
+28 silly addNameRange     '3.6.4',
+28 silly addNameRange     '3.7.0',
+28 silly addNameRange     '3.7.1',
+28 silly addNameRange     '3.7.2' ] ]
+29 verbose addNamed [ 'when', '3.7.2' ]
+30 verbose addNamed [ '3.7.2', '3.7.2' ]
+31 silly lockFile e1f976cd-when-3-7-2 when@3.7.2
+32 verbose lock when@3.7.2 /Users/tinafallahi/.npm/e1f976cd-when-3-7-2.lock
+33 silly lockFile 1d9c8864-ry-npmjs-org-when-when-3-7-2-tgz https://registry.npmjs.org/when/-/when-3.7.2.tgz
+34 verbose lock https://registry.npmjs.org/when/-/when-3.7.2.tgz /Users/tinafallahi/.npm/1d9c8864-ry-npmjs-org-when-when-3-7-2-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/when/-/when-3.7.2.tgz',
+35 verbose addRemoteTarball   '06bed1296df3a0bfd83f7f31c5e1d779bd97eae8' ]
+36 info retry fetch attempt 1 at 17:08:35
+37 verbose fetch to= /var/folders/r9/n6_ymlc540z30qhcqtc2kh3r0000gn/T/npm-9468-MfIBwn7v/registry.npmjs.org/when/-/when-3.7.2.tgz
+38 http GET https://registry.npmjs.org/when/-/when-3.7.2.tgz
+39 http 200 https://registry.npmjs.org/when/-/when-3.7.2.tgz
+40 silly lockFile 1d9c8864-ry-npmjs-org-when-when-3-7-2-tgz https://registry.npmjs.org/when/-/when-3.7.2.tgz
+41 silly lockFile 1d9c8864-ry-npmjs-org-when-when-3-7-2-tgz https://registry.npmjs.org/when/-/when-3.7.2.tgz
+42 silly lockFile e1f976cd-when-3-7-2 when@3.7.2
+43 silly lockFile e1f976cd-when-3-7-2 when@3.7.2
+44 silly lockFile 765ce543-when-3-6-4 when@^3.6.4
+45 silly lockFile 765ce543-when-3-6-4 when@^3.6.4
+46 silly resolved [ { name: 'when',
+46 silly resolved     version: '3.7.2',
+46 silly resolved     description: 'A lightweight Promises/A+ and when() implementation, plus other async goodies.',
+46 silly resolved     keywords:
+46 silly resolved      [ 'cujo',
+46 silly resolved        'Promises/A+',
+46 silly resolved        'promises-aplus',
+46 silly resolved        'promise',
+46 silly resolved        'promises',
+46 silly resolved        'deferred',
+46 silly resolved        'deferreds',
+46 silly resolved        'when',
+46 silly resolved        'async',
+46 silly resolved        'asynchronous',
+46 silly resolved        'ender' ],
+46 silly resolved     homepage: 'http://cujojs.com',
+46 silly resolved     licenses: [ [Object] ],
+46 silly resolved     repository: { type: 'git', url: 'https://github.com/cujojs/when' },
+46 silly resolved     bugs: { url: 'https://github.com/cujojs/when/issues' },
+46 silly resolved     maintainers: [ [Object] ],
+46 silly resolved     contributors: [ [Object], [Object], [Object] ],
+46 silly resolved     devDependencies:
+46 silly resolved      { 'promises-aplus-tests': '~2',
+46 silly resolved        benchmark: '~1',
+46 silly resolved        microtime: '~0',
+46 silly resolved        browserify: '~2',
+46 silly resolved        buster: '~0.7',
+46 silly resolved        jshint: '~2',
+46 silly resolved        rest: '1.1.x',
+46 silly resolved        optimist: '~0.6',
+46 silly resolved        'sauce-connect-launcher': '~0.4',
+46 silly resolved        wd: '~0.2',
+46 silly resolved        json5: '~0.2',
+46 silly resolved        poly: 'git://github.com/cujojs/poly#0.6.0' },
+46 silly resolved     main: 'when',
+46 silly resolved     ender: { files: [Object] },
+46 silly resolved     browser: { vertx: false },
+46 silly resolved     directories: { test: 'test' },
+46 silly resolved     scripts:
+46 silly resolved      { test: 'jshint . && buster-test -e node && promises-aplus-tests test/promises-aplus-adapter.js',
+46 silly resolved        'build-browser-test': 'browserify ./node_modules/poly/es5.js -o test/browser/es5.js && browserify ./test/*-test.js ./test/**/*-test.js -o test/browser/tests.js -x buster ',
+46 silly resolved        'browser-test': 'npm run build-browser-test && buster-static -e browser -p 8080',
+46 silly resolved        ci: 'npm test && node test/sauce.js',
+46 silly resolved        tunnel: 'node test/sauce.js -m',
+46 silly resolved        start: 'buster-static -e browser',
+46 silly resolved        benchmark: 'node benchmark/promise && node benchmark/map',
+46 silly resolved        'browserify-es6': 'browserify -s Promise es6-shim/Promise.browserify-es6.js --no-detect-globals -o es6-shim/Promise.js',
+46 silly resolved        browserify: 'browserify -s when build/when.browserify.js --no-detect-globals -o build/when.js',
+46 silly resolved        'browserify-debug': 'browserify -s when build/when.browserify-debug.js --no-detect-globals -o build/when.js' },
+46 silly resolved     gitHead: '631fc79b3970ec8c99f5e657386e1dd0b4a76f08',
+46 silly resolved     _id: 'when@3.7.2',
+46 silly resolved     _shasum: '06bed1296df3a0bfd83f7f31c5e1d779bd97eae8',
+46 silly resolved     _from: 'when@^3.6.4',
+46 silly resolved     _npmVersion: '1.4.28',
+46 silly resolved     _npmUser: { name: 'cujojs', email: 'info@cujojs.com' },
+46 silly resolved     dist:
+46 silly resolved      { shasum: '06bed1296df3a0bfd83f7f31c5e1d779bd97eae8',
+46 silly resolved        tarball: 'http://registry.npmjs.org/when/-/when-3.7.2.tgz' },
+46 silly resolved     _resolved: 'https://registry.npmjs.org/when/-/when-3.7.2.tgz' } ]
+47 info install when@3.7.2 into /Users/tinafallahi/Smellscape
+48 info installOne when@3.7.2
+49 verbose node_modules/when unbuild
+50 verbose tar unpack /Users/tinafallahi/.npm/when/3.7.2/package.tgz
+51 silly lockFile e37bab31-ahi-Smellscape-node-modules-when tar:///Users/tinafallahi/Smellscape/node_modules/when
+52 verbose lock tar:///Users/tinafallahi/Smellscape/node_modules/when /Users/tinafallahi/.npm/e37bab31-ahi-Smellscape-node-modules-when.lock
+53 silly lockFile 5df248e0-llahi-npm-when-3-7-2-package-tgz tar:///Users/tinafallahi/.npm/when/3.7.2/package.tgz
+54 verbose lock tar:///Users/tinafallahi/.npm/when/3.7.2/package.tgz /Users/tinafallahi/.npm/5df248e0-llahi-npm-when-3-7-2-package-tgz.lock
+55 silly gunzTarPerm modes [ '755', '644' ]
+56 silly gunzTarPerm extractEntry package.json
+57 silly gunzTarPerm extractEntry README.md
+58 silly gunzTarPerm extractEntry poll.js
+59 silly gunzTarPerm extractEntry pipeline.js
+60 silly gunzTarPerm extractEntry parallel.js
+61 silly gunzTarPerm extractEntry node.js
+62 silly gunzTarPerm extractEntry monitor.js
+63 silly gunzTarPerm extractEntry keys.js
+64 silly gunzTarPerm extractEntry guard.js
+65 silly gunzTarPerm extractEntry callbacks.js
+66 silly gunzTarPerm extractEntry sequence.js
+67 silly gunzTarPerm extractEntry cancelable.js
+68 silly gunzTarPerm extractEntry timeout.js
+69 silly gunzTarPerm extractEntry delay.js
+70 silly gunzTarPerm extractEntry unfold.js
+71 silly gunzTarPerm extractEntry when.js
+72 silly gunzTarPerm extractEntry generator.js
+73 silly gunzTarPerm extractEntry function.js
+74 silly gunzTarPerm extractEntry es6-shim/README.md
+75 silly gunzTarPerm extractEntry es6-shim/Promise.browserify-es6.js
+76 silly gunzTarPerm extractEntry es6-shim/Promise.js
+77 silly gunzTarPerm extractEntry lib/Promise.js
+78 silly gunzTarPerm extractEntry lib/Scheduler.js
+79 silly gunzTarPerm extractEntry lib/TimeoutError.js
+80 silly gunzTarPerm extractEntry lib/apply.js
+81 silly gunzTarPerm extractEntry lib/env.js
+82 silly gunzTarPerm extractEntry lib/format.js
+83 silly gunzTarPerm extractEntry lib/liftAll.js
+84 silly gunzTarPerm extractEntry lib/makePromise.js
+85 silly gunzTarPerm extractEntry lib/state.js
+86 silly gunzTarPerm extractEntry lib/decorators/array.js
+87 silly gunzTarPerm extractEntry lib/decorators/flow.js
+88 silly gunzTarPerm extractEntry lib/decorators/fold.js
+89 silly gunzTarPerm extractEntry lib/decorators/inspect.js
+90 silly gunzTarPerm extractEntry lib/decorators/iterate.js
+91 silly gunzTarPerm extractEntry lib/decorators/progress.js
+92 silly gunzTarPerm extractEntry lib/decorators/timed.js
+93 silly gunzTarPerm extractEntry lib/decorators/unhandledRejection.js
+94 silly gunzTarPerm extractEntry lib/decorators/with.js
+95 silly gunzTarPerm extractEntry monitor/README.md
+96 silly gunzTarPerm extractEntry monitor/ConsoleReporter.js
+97 silly gunzTarPerm extractEntry monitor/PromiseMonitor.js
+98 silly gunzTarPerm extractEntry monitor/console.js
+99 silly gunzTarPerm extractEntry monitor/error.js
+100 silly gunzTarPerm extractEntry node/function.js
+101 silly gunzTarPerm extractEntry LICENSE.txt
+102 silly gunzTarPerm extractEntry unfold/list.js
+103 silly lockFile e37bab31-ahi-Smellscape-node-modules-when tar:///Users/tinafallahi/Smellscape/node_modules/when
+104 silly lockFile e37bab31-ahi-Smellscape-node-modules-when tar:///Users/tinafallahi/Smellscape/node_modules/when
+105 silly lockFile 5df248e0-llahi-npm-when-3-7-2-package-tgz tar:///Users/tinafallahi/.npm/when/3.7.2/package.tgz
+106 silly lockFile 5df248e0-llahi-npm-when-3-7-2-package-tgz tar:///Users/tinafallahi/.npm/when/3.7.2/package.tgz
+107 info preinstall when@3.7.2
+108 verbose readDependencies using package.json deps
+109 verbose readDependencies using package.json deps
+110 silly resolved []
+111 verbose about to build /Users/tinafallahi/Smellscape/node_modules/when
+112 info build /Users/tinafallahi/Smellscape/node_modules/when
+113 verbose linkStuff [ false,
+113 verbose linkStuff   false,
+113 verbose linkStuff   false,
+113 verbose linkStuff   '/Users/tinafallahi/Smellscape/node_modules' ]
+114 info linkStuff when@3.7.2
+115 verbose linkBins when@3.7.2
+116 verbose linkMans when@3.7.2
+117 verbose rebuildBundles when@3.7.2
+118 info install when@3.7.2
+119 info postinstall when@3.7.2
+120 error peerinvalid The package chai does not satisfy its siblings' peerDependencies requirements!
+120 error peerinvalid Peer chai-json-schema@1.1.0 wants chai@>= 1.6.1 < 2
+121 error System Darwin 14.0.0
+122 error command "node" "/usr/local/bin/npm" "install" "when"
+123 error cwd /Users/tinafallahi/Smellscape
+124 error node -v v0.10.33
+125 error npm -v 1.4.28
+126 error code EPEERINVALID
+127 verbose exit [ 1, true ]
