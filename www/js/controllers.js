@@ -57,6 +57,58 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
 
 .controller('SmellsCtrl', function($scope, Smell) {
     $scope.smells = Smell.query();
+
+    $scope.map = {
+        defaults: {
+          // http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
+            tileLayer: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+            zoomControl: false
+        },
+        center: {
+            lat: 51.50,
+            lng: -0.12,
+            zoom: 16
+        }, 
+        events: {
+          marker: {
+            enable: [ 'click' ], 
+            logic: 'emit'
+          }
+        } 
+    };
+
+    var local_icons = {
+                defaultIcon: {},
+                smellIcon: {
+                    iconUrl: 'img/smell-marker.png',
+                    iconSize:     [38, 55], // size of the icon
+                    iconAnchor:   [22, 54], // point of the icon which will correspond to marker's location
+                }
+    }
+
+    $scope.markers = new Array();
+
+    $scope.smells.$promise.then(function(data) {
+        for (i=0; i<data.length; i++) {
+          $scope.markers.push({
+            lat: data[i].latitude,
+            lng: data[i].longitude,
+            icon: local_icons.smellIcon, 
+            options: {
+              id: '1'
+            }
+          });
+        }
+    });
+
+    $scope.$on('leafletDirectiveMarker.click', function (e, args) {
+      console.log(args);
+    });
+
+    /*for (i=0; i<smells.length; i++) {
+      alert(smells[i].latitude + smells[i].longitude);
+      
+    }*/
 })
 
 .controller('SmellCtrl', function($scope, $stateParams, Smell) {
