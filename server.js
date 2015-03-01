@@ -80,12 +80,33 @@ app.get('/smells', function(req, res) {
 })
 
 app.get('/smells/:id', function(req, res) {
-  console.log(req.params.id);
   new models.Smell({smellid: req.params.id})
     .fetch()
     .then(function(smell) {
       res.send(smell.toJSON());
     }).catch(function(error) {
+      console.log(error);
+      res.send('An error occured');
+    });
+})
+
+app.get('/comments', function(req, res) {
+  new models.Comment().fetchAll()
+    .then(function(smells) {
+      res.send(smells.toJSON());
+    }).catch(function(error) {
+      console.log(error);
+      res.send('An error occured');
+    });
+})
+
+app.get('/comments/:smellId', function(req, res) {
+  new models.Comment()
+    .query({where: {smellid: req.params.smellId}})
+    .fetchAll()
+    .then(function (comments) {
+      res.send(comments.toJSON());
+    }).catch (function (error) {
       console.log(error);
       res.send('An error occured');
     });

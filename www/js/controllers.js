@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   $scope.getCurrentPosition();*/
 })
 
-.controller('SmellsCtrl', function($scope, Smell) {
+.controller('SmellsCtrl', function($scope, Smell, Comments) {
     $scope.smells = Smell.query();
 
     $scope.map = {
@@ -91,24 +91,28 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     $scope.smells.$promise.then(function(data) {
         for (i=0; i<data.length; i++) {
           $scope.markers.push({
+            id : data[i].smellid,
             lat: data[i].latitude,
             lng: data[i].longitude,
-            icon: local_icons.smellIcon, 
-            options: {
-              id: '1'
-            }
+            icon: local_icons.smellIcon
           });
         }
     });
 
     $scope.$on('leafletDirectiveMarker.click', function (e, args) {
-      console.log(args);
+      var id = args.leafletEvent.target.options.id;
+      $scope.smell = Smell.get({smellId: id});
+      $scope.smell.$promise.then(function (data) {
+        console.log(data.description);
+      });
+      console.log("1: "+id);
+      $scope.comments = Comments.query({smellId: id});
+      $scope.comments.$promise.then(function (data) {
+        for (i=0; i<data.length; i++) {
+          console.log(data[i].body);
+        }
+      });
     });
-
-    /*for (i=0; i<smells.length; i++) {
-      alert(smells[i].latitude + smells[i].longitude);
-      
-    }*/
 })
 
 .controller('SmellCtrl', function($scope, $stateParams, Smell) {

@@ -6,4 +6,8 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('User', function ($resource) {
     return $resource('/user/:userId');
+})
+
+.factory('Comments', function ($resource) {
+	return $resource('/comments/:smellId');
 });
