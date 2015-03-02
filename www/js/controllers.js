@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   $scope.getCurrentPosition();*/
 })
 
-.controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comments) {
+.controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comment) {
     $scope.smells = Smell.query();
 
     $scope.map = {
@@ -91,7 +91,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     $scope.smells.$promise.then(function(data) {
         for (i=0; i<data.length; i++) {
           $scope.markers.push({
-            id : data[i].smellid,
+            id : data[i].id,
             lat: data[i].latitude,
             lng: data[i].longitude,
             icon: local_icons.smellIcon
@@ -114,9 +114,9 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     $scope.$on('leafletDirectiveMarker.click', function (e, args) {
       $scope.detailsModal.show();
 
-      var id = args.leafletEvent.target.options.id;
-      $scope.smell = Smell.get({smellId: id});
-      $scope.comments = Comments.query({smellId: id});
+      $scope.id = args.leafletEvent.target.options.id;
+      $scope.smell = Smell.get({smellId: $scope.id});
+      $scope.comments = Comment.query({smellId: $scope.id});
     });
 
     $scope.closeDetails = function() {
@@ -124,7 +124,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     };
 
     $scope.shareOnFb = function(event) {
-    openFB.api({
+      openFB.api({
         method: 'POST',
         path: '/me/feed',
         params: {
@@ -136,27 +136,38 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
         error: function () {
             alert('An error occurred while sharing this smell on Facebook');
         }
-    });
-  };
+      }); 
+    };
 
-  $scope.agree = function() {
-    $scope.commentModal.show();
-  };
+    $scope.agree = function() {
+      $scope.commentModal.show();
+    };
 
-  $scope.disagree = function() {
-    $scope.detailsModal.hide();
-    $state.go('app.addsmell');
-  };
+    $scope.disagree = function() {
+      $scope.detailsModal.hide();
+      $state.go('app.addsmell');
+    };
 
-  $scope.closeComment = function() {
-    $scope.commentModal.hide();
-  };
+    $scope.closeComment = function() {
+      $scope.commentModal.hide();
+    };
 
-  $scope.addComment = function() {
-    $scope.commentModal.hide();
-    $scope.detailsModal.hide();
-    console.log('add comment to db');
-  };
+    $scope.commentData = {
+      // TODO: determine if even necessary
+      //userid: 1, 
+      agree: true, 
+      body: '',
+      smellid: 0
+    };
+
+    $scope.addComment = function() {
+      $scope.commentData.smellid = $scope.smell.id;
+      var comment = new Comment($scope.commentData);
+      comment.$save();
+      $scope.commentModal.hide();
+      $scope.detailsModal.hide();
+
+    };
 })
 
 .controller('SmellCtrl', function($scope, $stateParams, Smell) {

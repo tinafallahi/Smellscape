@@ -48,53 +48,90 @@ var bookshelf = app.get('bookshelf');
 //app.use(express.static(__dirname + '/public'));
 
 /////// ROUTES ///////
-app.get('/api/users', function(req, res) {
+app.post('/users', function(req, res) {
+	console.log(req);
+	new models.User(req.body)
+	.save()
+	.then(function (user) {
+		res.json({error: false, data: {id: user.get('id')}});
+	})
+	.otherwise(function (err) {
+		console.log(err);
+		res.status(500).json({error: true, data: {message: err.message}});
+	});
+})
+
+app.get('/users', function(req, res) {
   new models.User().fetchAll()
-    .then(function(users) {
+    .then(function (users) {
       res.send(users.toJSON());
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log(error);
       res.send('An error occured');
     });
 })
 
-app.get('/user/:userId', function(req, res) {
+app.get('/users/:userId', function(req, res) {
   new models.User({userid: 1})
     .fetch()
-    .then(function(user) {
+    .then(function (user) {
       res.send(user.toJSON());
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log(error);
       res.send('An error occured');
     });
+})
+
+app.post('/smells', function(req, res) {
+	new models.Smell(req.body)
+	.save()
+	.then(function (smell) {
+		res.json({error: false, data: {id: smell.get('id')}});
+	})
+	.otherwise(function (err) {
+		console.log(err);
+		res.status(500).json({error: true, data: {message: err.message}});
+	});
 })
 
 app.get('/smells', function(req, res) {
   new models.Smell().fetchAll()
-    .then(function(smells) {
+    .then(function (smells) {
       res.send(smells.toJSON());
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log(error);
       res.send('An error occured');
     });
 })
 
 app.get('/smells/:id', function(req, res) {
-  new models.Smell({smellid: req.params.id})
+  new models.Smell({id: req.params.id})
     .fetch()
-    .then(function(smell) {
+    .then(function (smell) {
       res.send(smell.toJSON());
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log(error);
       res.send('An error occured');
     });
 })
 
+app.post('/comments', function(req, res) {
+	new models.Comment(req.body)
+	.save()
+	.then(function (comment) {
+		res.json({error: false, data: {id: comment.get('id')}});
+	})
+	.otherwise(function (err) {
+		console.log(err);
+		res.status(500).json({error: true, data: {message: err.message}});
+	});
+})
+
 app.get('/comments', function(req, res) {
   new models.Comment().fetchAll()
-    .then(function(smells) {
+    .then(function (smells) {
       res.send(smells.toJSON());
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log(error);
       res.send('An error occured');
     });

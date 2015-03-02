@@ -5,9 +5,9 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('User', function ($resource) {
-    return $resource('/user/:userId');
+    return $resource('/users/:userId');
 })
 
-.factory('Comments', function ($resource) {
+.factory('Comment', function ($resource) {
 	return $resource('/comments/:smellId');
 });
