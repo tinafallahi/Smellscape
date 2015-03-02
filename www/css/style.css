@@ -314,6 +314,97 @@ legend {
   float: right;
 }
 
+/***************** SMELLS PAGE STYLES *******************/ 
+.modal.smell-details {
+  background-color: #FAFAED;
+  opacity: 0.8;
+}
+
+.smell-details.close {
+  display: table-cell;
+  height: 30px;
+  width: 35px;
+  background-image: url("../img/cancel.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+  /* margin-left: 70%; */
+}
+
+.smell-details.share {
+  display: table-cell;
+  height: 40px;
+  width: 45px;
+  margin-left: 12px;
+  background-image: url("../img/share.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+  /*margin-left: 60%;
+  margin-top: 12%;*/
+}
+
+.smell-details.description {
+  display: table-cell;
+  margin-right: 0% !important; 
+  width: 50%;
+}
+
+.smell-details.title {
+  display: table;
+}
+
+.smell-details.line { 
+  display: block; height: 1px;
+  border: 0; border-top: 1px solid #E05346;
+  margin: 1em 0; padding: 0; 
+}
+
+.smell-details.bottom {
+  display: table;
+  margin-left: 75%;
+}
+
+.smell-details.agree {
+  display: table-cell;
+  height: 30px;
+  width: 35px;
+  background-image: url("../img/agree.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.smell-details.disagree {
+  display: table-cell;
+  height: 30px;
+  width: 35px;
+  background-image: url("../img/disagree.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.modal.add-comment {
+  background-color: #FAFAED;
+  opacity: 0.8;
+}
+
+.title.comment {
+  border: 0px solid;
+  width: 23%;
+  color: #0E1025;
+}
+
+.input.comment {
+  background-color: #FAFAED;
+  color: #E05346;
+}
+
 /*.home-add-button {
   height: 50px;
   width: 50px;

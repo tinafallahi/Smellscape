@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   $scope.getCurrentPosition();*/
 })
 
-.controller('SmellsCtrl', function($scope, Smell, Comments) {
+.controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comments) {
     $scope.smells = Smell.query();
 
     $scope.map = {
@@ -99,20 +99,64 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
         }
     });
 
+    $ionicModal.fromTemplateUrl('templates/smelldetails.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.detailsModal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('templates/addcomment.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.commentModal = modal;
+    });
+
     $scope.$on('leafletDirectiveMarker.click', function (e, args) {
+      $scope.detailsModal.show();
+
       var id = args.leafletEvent.target.options.id;
       $scope.smell = Smell.get({smellId: id});
-      $scope.smell.$promise.then(function (data) {
-        console.log(data.description);
-      });
-      console.log("1: "+id);
       $scope.comments = Comments.query({smellId: id});
-      $scope.comments.$promise.then(function (data) {
-        for (i=0; i<data.length; i++) {
-          console.log(data[i].body);
-        }
-      });
     });
+
+    $scope.closeDetails = function() {
+      $scope.detailsModal.hide();
+    };
+
+    $scope.shareOnFb = function(event) {
+    openFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "Look at this smell: '" + $scope.smell.description
+        },
+        success: function () {
+            alert('The smell was shared on Facebook');
+        },
+        error: function () {
+            alert('An error occurred while sharing this smell on Facebook');
+        }
+    });
+  };
+
+  $scope.agree = function() {
+    $scope.commentModal.show();
+  };
+
+  $scope.disagree = function() {
+    $scope.detailsModal.hide();
+    $state.go('app.addsmell');
+  };
+
+  $scope.closeComment = function() {
+    $scope.commentModal.hide();
+  };
+
+  $scope.addComment = function() {
+    $scope.commentModal.hide();
+    $scope.detailsModal.hide();
+    console.log('add comment to db');
+  };
 })
 
 .controller('SmellCtrl', function($scope, $stateParams, Smell) {
