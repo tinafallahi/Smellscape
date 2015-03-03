@@ -170,6 +170,18 @@ app.get('/walks/:walkId', function(req, res) {
    });
 })
 
+app.get('/points/:walkId', function(req, res) {
+  new models.Point()
+    .query({where: {walkid: req.params.walkId}})
+    .fetchAll()
+    .then(function (walks) {
+      res.send(walks.toJSON());
+    }).catch (function (error) {
+      console.log(error);
+      res.send('An error occured');
+    });
+})
+
 /////// SERVER START /////// 
 app.use(express.static(__dirname + "/www"));
 app.listen(process.env.PORT || 5000);

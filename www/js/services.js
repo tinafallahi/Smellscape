@@ -14,4 +14,8 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('Walk', function ($resource) {
 	return $resource('/walks/:walkId');
+})
+
+.factory('Point', function ($resource) {
+	return $resource('/points/:walkId');
 });

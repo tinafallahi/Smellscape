@@ -333,8 +333,8 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     });
 })
 
-.controller('WalksCtrl', function($scope, $ionicModal, $timeout, Walk) {
-	$scope.map = {
+.controller('WalksCtrl', function($scope, $ionicModal, $timeout, Walk, Smell, Point) {
+  $scope.map = {
     	defaults: {
           	// http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
             tileLayer: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
@@ -344,8 +344,42 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
             lat: 51.50,
             lng: -0.12,
             zoom: 16
-        }
+        }, 
+        events: {}
     };
+
+    var local_icons = {
+                defaultIcon: {},
+                smellIcon: {
+                    iconUrl: 'img/green-marker.png',
+                    iconSize:     [38, 55], // size of the icon
+                    iconAnchor:   [22, 54], // point of the icon which will correspond to marker's location
+                }, 
+                pointIcon: {
+                    iconUrl: 'img/walk-todo.png',
+                    iconSize:     [20, 20], // size of the icon
+                    iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+                }, 
+                startPointIcon: {
+                    iconUrl: 'img/start-point.png',
+                    iconSize:     [20, 20], // size of the icon
+                    iconAnchor:   [10, 10], 
+                }
+    }
+
+    $scope.markers = new Array();
+
+    $scope.smells = Smell.query();
+    $scope.smells.$promise.then(function(data) {
+        for (i=0; i<data.length; i++) {
+          $scope.markers.push({
+            id : data[i].id,
+            lat: data[i].latitude,
+            lng: data[i].longitude,
+            icon: local_icons.smellIcon
+          });
+        }
+      });
 
     $ionicModal.fromTemplateUrl('templates/walklist.html', {
         scope: $scope
@@ -361,9 +395,9 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
 
     $scope.walks = Walk.query();
 
-    $timeout(function() {
-    	$scope.walkslistModal.show();
-    }, 3000);
+    $scope.pickWalk = function () {
+      $scope.walkslistModal.show();
+    }
 
     $scope.shareOnFb = function () {
     	// TODO: share on facebook
@@ -382,10 +416,33 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       $scope.walksdetailsModal.hide();
     }
 
-    $scope.startWalk = function (walkid) { 
+    $scope.startWalk = function () { 
       $scope.walksdetailsModal.hide();
       $scope.walkslistModal.hide();
-      console.log($scope.walkdetails.id);
-      // TODO: Start walk from here... 
+      console.log($scope.map);
+      $scope.points = Point.query({walkId: $scope.walkdetails.id});
+
+      $scope.points.$promise.then(function(data) {
+        for (i=0; i<data.length; i++) {
+          // TODO: different icon for start and center around it
+          if(i==1) {
+            $scope.markers.push({
+            id : data[i].id,
+            lat: data[i].latitude,
+            lng: data[i].longitude,
+            icon: local_icons.startPointIcon
+          });
+            $scope.map.center.lat=data[i].latitude;
+            $scope.map.center.lng=data[i].longitude;
+          } else {
+            $scope.markers.push({
+            id : data[i].id,
+            lat: data[i].latitude,
+            lng: data[i].longitude,
+            icon: local_icons.pointIcon
+          });
+          }
+        }
+      });
     }     
 });
