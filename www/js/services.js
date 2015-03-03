@@ -10,4 +10,8 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('Comment', function ($resource) {
 	return $resource('/comments/:smellId');
+})
+
+.factory('Walk', function ($resource) {
+	return $resource('/walks/:walkId');
 });

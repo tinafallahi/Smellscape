@@ -129,8 +129,8 @@ app.post('/comments', function(req, res) {
 
 app.get('/comments', function(req, res) {
   new models.Comment().fetchAll()
-    .then(function (smells) {
-      res.send(smells.toJSON());
+    .then(function (comments) {
+      res.send(comments.toJSON());
     }).catch(function (error) {
       console.log(error);
       res.send('An error occured');
@@ -147,6 +147,27 @@ app.get('/comments/:smellId', function(req, res) {
       console.log(error);
       res.send('An error occured');
     });
+})
+
+app.get('/walks', function(req,res) {
+  new models.Walk().fetchAll()
+    .then(function (walks) {
+      res.send(walks.toJSON());
+    }).catch(function (error) {
+      console.log(error);
+      res.send('An error occured');
+    });
+})
+
+app.get('/walks/:walkId', function(req, res) {
+  new models.Walk({id: req.params.walkId})
+    .fetch()
+    .then(function (walk) {	
+      res.send(walk.toJSON());
+    }).catch(function (error) {
+      console.log(error);
+      res.send('An error occured');
+   });
 })
 
 /////// SERVER START /////// 

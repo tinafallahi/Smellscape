@@ -124,6 +124,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     };
 
     $scope.shareOnFb = function(event) {
+    	// TODO: share on Facebook
       openFB.api({
         method: 'POST',
         path: '/me/feed',
@@ -170,7 +171,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     };
 })
 
-.controller('SmellCtrl', function($scope, $stateParams, Smell) {
+/*.controller('SmellCtrl', function($scope, $stateParams, Smell) {
     $scope.smell = Smell.get({smellId: $stateParams.smellId});
 
     $scope.share = function(event) {
@@ -189,7 +190,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
         }
     });
   };
-})
+})*/
 
 .controller('UserCtrl', function($scope, auth, $state, store) {
     //$scope.user = User.get({userId: $stateParams.userId});
@@ -200,21 +201,6 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     store.remove('refreshToken');
     $state.go('login');
   }
-})
-
-.controller('WalksCtrl', function($scope) {
-      $scope.map = {
-        defaults: {
-          // http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
-            tileLayer: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-            zoomControlPosition: 'topright'
-        },
-        center: {
-            lat: 51.50,
-            lng: -0.12,
-            zoom: 16
-        }
-      };
 })
 
 .controller('AddSmellCtrl', function($scope, $ionicModal, $cordovaCamera) {
@@ -286,6 +272,8 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
               $scope.modalAdd.show();
       });
 
+      $scope.smellData = {};
+
     $scope.takePic = function() {
       alert("cam function! ");
       var options = { 
@@ -343,4 +331,61 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       $scope.modalCheck.remove();
       $scope.modalShare.remove();
     });
+})
+
+.controller('WalksCtrl', function($scope, $ionicModal, $timeout, Walk) {
+	$scope.map = {
+    	defaults: {
+          	// http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
+            tileLayer: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+            zoomControl: false
+        },
+        center: {
+            lat: 51.50,
+            lng: -0.12,
+            zoom: 16
+        }
+    };
+
+    $ionicModal.fromTemplateUrl('templates/walklist.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.walkslistModal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('templates/walkdetails.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.walksdetailsModal = modal;
+    });
+
+    $scope.walks = Walk.query();
+
+    $timeout(function() {
+    	$scope.walkslistModal.show();
+    }, 3000);
+
+    $scope.shareOnFb = function () {
+    	// TODO: share on facebook
+    }
+
+    $scope.closeWalks = function () {
+    	$scope.walkslistModal.hide();
+    }
+
+    $scope.showDetails = function (walkid) {
+      $scope.walkdetails = Walk.get({walkId: walkid});
+      $scope.walksdetailsModal.show();
+    }
+
+    $scope.closeWalk = function () {
+      $scope.walksdetailsModal.hide();
+    }
+
+    $scope.startWalk = function (walkid) { 
+      $scope.walksdetailsModal.hide();
+      $scope.walkslistModal.hide();
+      console.log($scope.walkdetails.id);
+      // TODO: Start walk from here... 
+    }     
 });

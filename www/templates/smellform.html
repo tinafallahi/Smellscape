@@ -5,7 +5,7 @@
         <label class="item smell-name">
           <fieldset class="field smell-name">
     		<legend class="title smell-name">SMELL NAME</legend>
-    		<input class="input smell-name" type="text" ng-model="smell.description">
+    		<input class="input smell-name" type="text" ng-model="smellData.description">
 		  </fieldset>
         </label>
         <label class="item">
@@ -30,7 +30,7 @@
         <label class="item">
           <fieldset class="field">
     		<legend class="title smell-assoc">SMELL ASSOCIATION</legend>
-    		<textarea class=" input smell-assoc" rows="4" ng-model="smell.association"></textarea>
+    		<textarea class=" input smell-assoc" rows="4" ng-model="smellData.association"></textarea>
 		  </fieldset>
         </label>
         <button class="cancel" ng-click="closeAdd()"></button>
