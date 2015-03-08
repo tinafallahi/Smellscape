@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 'cordovaGeolocationModule', 'ngCordova'])
+angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 'ngCordova', 'geolocation'])
 
 .controller('LoginCtrl', function($scope, auth, $state, store) {
   $scope.signin = function() {
@@ -20,6 +20,17 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   };
 })
 
+.controller('UserCtrl', function($scope, auth, $state, store) {
+    //$scope.user = User.get({userId: $stateParams.userId});
+    $scope.logout = function() {
+    auth.signout();
+    store.remove('token');
+    store.remove('profile');
+    store.remove('refreshToken');
+    $state.go('login');
+  }
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $state) {
   $scope.infoClicked = function(message) {
         alert(message);
@@ -36,26 +47,9 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   $scope.walks = function() {
     $state.go('app.walks');
   }
-
-  /*$scope.getCurrentPosition = function() {
-    cordovaGeolocationService.getCurrentPosition(function(position){
-        alert(
-            'Latitude: '          + position.coords.latitude          + '\n' +
-            'Longitude: '         + position.coords.longitude         + '\n' +
-            'Altitude: '          + position.coords.altitude          + '\n' +
-            'Accuracy: '          + position.coords.accuracy          + '\n' +
-            'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-            'Heading: '           + position.coords.heading           + '\n' +
-            'Speed: '             + position.coords.speed             + '\n' +
-            'Timestamp: '         + position.timestamp                + '\n'
-        );
-    });
-  };
-
-  $scope.getCurrentPosition();*/
 })
 
-.controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comment) {
+.controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comment, store) {
     $scope.smells = Smell.query();
 
     $scope.map = {
@@ -81,8 +75,8 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
                 defaultIcon: {},
                 smellIcon: {
                     iconUrl: 'img/smell-marker.png',
-                    iconSize:     [38, 55], // size of the icon
-                    iconAnchor:   [22, 54], // point of the icon which will correspond to marker's location
+                    iconSize:     [38, 55],
+                    iconAnchor:   [22, 54]
                 }
     }
 
@@ -153,9 +147,11 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       $scope.commentModal.hide();
     };
 
+    var profile = store.get('profile');
+    var userId = profile.user_id;
+
     $scope.commentData = {
-      // TODO: determine if even necessary
-      //userid: 1, 
+      userid: userId, 
       agree: true, 
       body: '',
       smellid: 0
@@ -171,39 +167,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     };
 })
 
-/*.controller('SmellCtrl', function($scope, $stateParams, Smell) {
-    $scope.smell = Smell.get({smellId: $stateParams.smellId});
-
-    $scope.share = function(event) {
-    openFB.api({
-        method: 'POST',
-        path: '/me/feed',
-        params: {
-            message: "Look at this smell: '" + $scope.smell.association + "' at " +
-                $scope.smell.longitude + " " + $scope.smell.latitude
-        },
-        success: function () {
-            alert('The smell was shared on Facebook');
-        },
-        error: function () {
-            alert('An error occurred while sharing this smell on Facebook');
-        }
-    });
-  };
-})*/
-
-.controller('UserCtrl', function($scope, auth, $state, store) {
-    //$scope.user = User.get({userId: $stateParams.userId});
-    $scope.logout = function() {
-    auth.signout();
-    store.remove('token');
-    store.remove('profile');
-    store.remove('refreshToken');
-    $state.go('login');
-  }
-})
-
-.controller('AddSmellCtrl', function($scope, $ionicModal, $cordovaCamera) {
+.controller('AddSmellCtrl', function($scope, $ionicModal, $cordovaCamera, Smell, geolocation, store) {
       $scope.map = {
         defaults: {
           // http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
@@ -222,8 +186,8 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
                 defaultIcon: {},
                 smellIcon: {
                     iconUrl: 'img/smell-marker.png',
-                    iconSize:     [38, 55], // size of the icon
-                    iconAnchor:   [22, 54], // point of the icon which will correspond to marker's location
+                    iconSize:     [38, 55],
+                    iconAnchor:   [22, 54]
                 }
       }
 
@@ -251,7 +215,6 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       });
 
       $scope.$on("leafletDirectiveMap.click", function(event, args){
-                // Create the login modal that we will use later
                 var leafEvent = args.leafletEvent;
                 if($scope.markers.length == 0) {
                   $scope.markers.push({
@@ -269,7 +232,16 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
                       focus: true
                   });
                 }
-              $scope.modalAdd.show();
+
+                var profile = store.get('profile');
+                var userId = profile.user_id;
+
+                $scope.smellData = {};
+                $scope.smellData.userid = userId;
+                $scope.smellData.strength = 3;
+                $scope.smellData.dynamicness = 3;
+                $scope.smellData.likeability = 3;
+                $scope.modalAdd.show();
       });
 
       $scope.smellData = {};
@@ -291,18 +263,16 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
         }, function(err) {
-            // An error occured. Show a message to the user
+            // TODO: An error occured. Show a message to the user
         });
     }
 
     $scope.closeAdd = function() {
       $scope.modalAdd.hide();
-      // Clear form
     };
 
     $scope.continueAdd = function() {
       $scope.modalAdd.hide();
-      // Add data into the form
       $scope.modalCheck.show();
     };
 
@@ -313,8 +283,16 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
 
     $scope.submitSmell = function() {
       $scope.modalCheck.hide();
-      // Add data to db
-      $scope.modalShare.show();
+
+      geolocation.getLocation().then(function(data){
+        $scope.smellData.latitude = data.coords.latitude;
+        $scope.smellData.longitude = data.coords.longitude;
+
+        var smell = new Smell($scope.smellData);
+        smell.$save();
+
+        $scope.modalShare.show();
+      }); 
     }
 
     $scope.smellDone = function() {
@@ -352,18 +330,18 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
                 defaultIcon: {},
                 smellIcon: {
                     iconUrl: 'img/green-marker.png',
-                    iconSize:     [38, 55], // size of the icon
-                    iconAnchor:   [22, 54], // point of the icon which will correspond to marker's location
+                    iconSize:     [38, 55],
+                    iconAnchor:   [22, 54]
                 }, 
                 pointIcon: {
                     iconUrl: 'img/walk-todo.png',
-                    iconSize:     [20, 20], // size of the icon
-                    iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+                    iconSize:     [20, 20],
+                    iconAnchor:   [10, 10]
                 }, 
                 startPointIcon: {
                     iconUrl: 'img/start-point.png',
-                    iconSize:     [20, 20], // size of the icon
-                    iconAnchor:   [10, 10], 
+                    iconSize:     [20, 20],
+                    iconAnchor:   [10, 10]
                 }
     }
 
@@ -424,7 +402,6 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
 
       $scope.points.$promise.then(function(data) {
         for (i=0; i<data.length; i++) {
-          // TODO: different icon for start and center around it
           if(i==1) {
             $scope.markers.push({
             id : data[i].id,
