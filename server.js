@@ -61,14 +61,13 @@ var bookshelf = app.get('bookshelf');
 
 /////// ROUTES ///////
 app.post('/users', function(req, res) {
-	console.log(req);
 	new models.User(req.body)
 	.save()
 	.then(function (user) {
 		res.json({error: false, data: {id: user.get('id')}});
 	})
 	.otherwise(function (err) {
-		console.log(err);
+    logger.error(err);
 		res.status(500).json({error: true, data: {message: err.message}});
 	});
 })
@@ -78,7 +77,7 @@ app.get('/users', function(req, res) {
     .then(function (users) {
       res.send(users.toJSON());
     }).catch(function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -89,7 +88,7 @@ app.get('/users/:userId', function(req, res) {
     .then(function (user) {
       res.send(user.toJSON());
     }).catch(function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -111,7 +110,7 @@ app.post('/smells', function(req, res) {
 		res.json({error: false, data: {id: smell.get('id')}});
 	})
 	.otherwise(function (err) {
-		console.log(err);
+		logger.error(err);
 		res.status(500).json({error: true, data: {message: err.message}});
 	});
   })
@@ -122,7 +121,7 @@ app.get('/smells', function(req, res) {
     .then(function (smells) {
       res.send(smells.toJSON());
     }).catch(function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -133,7 +132,7 @@ app.get('/smells/:id', function(req, res) {
     .then(function (smell) {
       res.send(smell.toJSON());
     }).catch(function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -145,7 +144,7 @@ app.post('/comments', function(req, res) {
 		res.json({error: false, data: {id: comment.get('id')}});
 	})
 	.otherwise(function (err) {
-		console.log(err);
+		logger.error(err);
 		res.status(500).json({error: true, data: {message: err.message}});
 	});
 })
@@ -155,7 +154,7 @@ app.get('/comments', function(req, res) {
     .then(function (comments) {
       res.send(comments.toJSON());
     }).catch(function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -167,7 +166,7 @@ app.get('/comments/:smellId', function(req, res) {
     .then(function (comments) {
       res.send(comments.toJSON());
     }).catch (function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -177,7 +176,7 @@ app.get('/walks', function(req,res) {
     .then(function (walks) {
       res.send(walks.toJSON());
     }).catch(function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -188,7 +187,7 @@ app.get('/walks/:walkId', function(req, res) {
     .then(function (walk) {	
       res.send(walk.toJSON());
     }).catch(function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
    });
 })
@@ -200,7 +199,7 @@ app.get('/points/:walkId', function(req, res) {
     .then(function (walks) {
       res.send(walks.toJSON());
     }).catch (function (error) {
-      console.log(error);
+      logger.error(error);
       res.send('An error occured');
     });
 })
@@ -210,5 +209,5 @@ app.use(express.static(__dirname + "/www"));
 app.listen(process.env.PORT || 5000);
 
 app.listen(function() {
-  console.log("Smellscape app is running!");
+  logger.debug("Smellscape app is running!");
 });

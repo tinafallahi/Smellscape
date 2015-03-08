@@ -5,32 +5,32 @@
         <label class="item smell-name">
           <fieldset class="field smell-name">
     		<legend class="title smell-name">SMELL NAME</legend>
-    		<input class="input smell-name" type="text" ng-model="smell.description">
+    		<input class="input smell-name" type="text" ng-model="smellData.description">
 		  </fieldset>
         </label>
         <label class="item">
           <span class="input-label">SMELL EXPECTATION &nbsp; &nbsp; &nbsp; SMELL PHOTO</span>
         </label>
-        <input class="radio exp left" type="radio" name="expectedness" value="expected"> Expected
-		<input class="radio exp right" type="radio" name="expectedness" value="unexpected"> Unexpected
+        <input class="radio exp left" type="radio" name="expected" ng-model="smellData.expected" value=true> Expected
+		<input class="radio exp right" type="radio" name="expected" ng-model="smellData.expected" value=false> Unexpected
         <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
         <button class="camera" ng-click="takePic()"></button>
         <label class="item">
         	<span class="input-label">SMELL INTENSITY</span>
-        	<input type="range" value="7">
+        	<input type="range" min="1" max="7" value="3" step="1" ng-model="smellData.strength">
         </label>
         <label class="item">
         	<span class="input-label">SMELL DURATION</span>
-        	<input type="range" value="7">
+        	<input type="range" min="1" max="7" value="3" step="1" ng-model="smellData.dynamicness">
         </label>
         <label class="item">
         	<span class="input-label">SMELL PREFERENCE</span>
-        	<input type="range" value="7">
+        	<input type="range" min="1" max="7" value="3" step="1" ng-model="smellData.likeability">
         </label>
         <label class="item">
           <fieldset class="field">
     		<legend class="title smell-assoc">SMELL ASSOCIATION</legend>
-    		<textarea class=" input smell-assoc" rows="4" ng-model="smell.association"></textarea>
+    		<textarea class=" input smell-assoc" rows="4" ng-model="smellData.association"></textarea>
 		  </fieldset>
         </label>
         <button class="cancel" ng-click="closeAdd()"></button>

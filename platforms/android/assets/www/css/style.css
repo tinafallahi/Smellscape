@@ -197,7 +197,7 @@ legend {
 }
 
 .input.smell-name {
-  background-color: #FAFAED;
+  background-color: #FAFAED !important;
   color: #E05346;
 }
 
@@ -208,7 +208,7 @@ legend {
 }
 
 .input.smell-assoc {
-  background-color: #FAFAED;
+  background-color: #FAFAED !important;
   color: #E05346;
 }
 
@@ -282,7 +282,12 @@ legend {
   border: 0px solid;
 }
 
+.add-smell.share.table {
+  display: table;
+}
+
 .share.cancel {
+  display: table-cell;
   height: 30px;
   width: 35px;
   margin-left: 5%;
@@ -296,10 +301,10 @@ legend {
 }
 
 .button.share {
+  display: table-cell;
   height: 40px;
   width: 45px;
-  margin-left: 60%;
-  margin-top: 12%;
+  margin-top: 15%;
   background-image: url("../img/share.png");
   background-repeat: no-repeat center center fixed;
   background-color: Transparent;
@@ -308,26 +313,160 @@ legend {
 }
 
 .share.smell-name {
-  width: 50%;
-  margin-right: 30%;
+  display: table-cell;
+  background-color: #FAFAED !important;
+  /*width: 50%;*/
   margin-top: 15%;
-  float: right;
 }
 
-/*.home-add-button {
-  height: 50px;
-  width: 50px;
-  margin-left: 40%;
-  margin-bottom: 1px;
-  padding-top: 0px;
-  background-image: url("../img/add-smell-home.png");
-  background-color: Transparent;
-    background-repeat: no-repeat center center fixed;
-    background-size: 100% 100%;
-    border: 0px solid;
-}*/
+/***************** SMELLS PAGE STYLES *******************/ 
 
-/*.bar-stable {
-  background: transparent;
+.modal.smell-details {
+  background-color: #FAFAED;
+  opacity: 0.8;
+}
+
+.smell-details.close {
+  display: table-cell;
+  height: 30px;
+  width: 35px;
+  background-image: url("../img/cancel.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
   border: 0px solid;
-}*/
+  /* margin-left: 70%; */
+}
+
+.smell-details.share {
+  display: table-cell;
+  height: 40px;
+  width: 45px;
+  margin-left: 12px;
+  background-image: url("../img/share.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+  /*margin-left: 60%;
+  margin-top: 12%;*/
+}
+
+.smell-details.description {
+  display: table-cell;
+  margin-right: 0% !important; 
+  width: 50%;
+}
+
+.smell-details.title {
+  display: table;
+}
+
+.smell-details.line { 
+  display: block; height: 1px;
+  border: 0; border-top: 1px solid #E05346;
+  margin: 1em 0; padding: 0; 
+}
+
+.smell-details.bottom {
+  display: table;
+  margin-left: 75%;
+}
+
+.smell-details.agree {
+  display: table-cell;
+  height: 30px;
+  width: 35px;
+  background-image: url("../img/agree.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.smell-details.disagree {
+  display: table-cell;
+  height: 30px;
+  width: 35px;
+  background-image: url("../img/disagree.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+}
+
+.modal.add-comment {
+  background-color: #FAFAED;
+  opacity: 0.8;
+}
+
+.title.comment {
+  border: 0px solid;
+  width: 23%;
+  color: #0E1025;
+}
+
+.input.comment {
+  background-color: #FAFAED;
+  color: #E05346;
+}
+
+/************* SMELL WALKS PAGE STYLES *****************/
+
+.modal.walks-list {
+  background-color: #FAFAED;
+  opacity: 0.8;
+}
+
+.walks-list.close {
+  display: table-cell;
+  height: 30px;
+  width: 35px;
+  background-image: url("../img/cancel.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+  /* margin-left: 70%; */
+}
+
+.walks-list.share {
+  display: table-cell;
+  height: 40px;
+  width: 45px;
+  margin-left: 12px;
+  background-image: url("../img/share.png");
+  background-repeat: no-repeat center center fixed;
+  background-color: Transparent;
+  background-size: 100% 100%;
+  border: 0px solid;
+  /*margin-left: 60%;
+  margin-top: 12%;*/
+}
+
+.walks-list.available {
+  display: table-cell;
+  margin-right: 0% !important; 
+  width: 50%;
+}
+
+.walks-list.title {
+  display: table;
+}
+
+.walks-list.line { 
+  display: block; height: 1px;
+  border: 0; border-top: 1px solid #E05346;
+  margin: 1em 0; padding: 0; 
+}
+
+.modal.walkdetails {
+  background-color: #FAFAED;
+  opacity: 0.8;
+}
+
+.walkdetails.line { 
+  display: block; height: 1px;
+  border: 0; border-top: 1px solid #E05346;
+  margin: 1em 0; padding: 0; 
+}

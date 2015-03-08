@@ -1,0 +1,16 @@
+<ion-modal-view class="modal add-comment">
+  <ion-content>
+    <form>
+      <div class="list">
+        <label class="item">
+          <fieldset class="field">
+        <legend class="title comment">COMMENT</legend>
+        <textarea class=" input comment" rows="4" ng-model="commentData.body"></textarea>
+      </fieldset>
+        </label>
+        <button class="cancel" ng-click="closeComment()"></button>
+        <button class="done" ng-click="addComment({{smell.id}})"></button>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

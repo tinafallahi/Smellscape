@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 'ngCordova', 'geolocation'])
+angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-directive', 'ngCordova', 'geolocation'])
 
 .controller('LoginCtrl', function($scope, auth, $state, store) {
   $scope.signin = function() {
@@ -65,8 +65,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
             zoomControl: false
         },
         center: {
-            lat: 51.50,
-            lng: -0.12,
+            autoDiscover: true,
             zoom: 16
         }, 
         events: {
@@ -368,12 +367,15 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
             zoomControl: false
         },
         center: {
-            lat: 51.50,
-            lng: -0.12,
+            autoDiscover: true,
             zoom: 16
         }, 
         events: {}
     };
+
+    //$scope.map.locate({setView : true});
+
+    //console.log($scope.map.locate);
 
     var local_icons = {
                 defaultIcon: {},

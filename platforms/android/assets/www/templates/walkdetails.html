@@ -1,0 +1,17 @@
+<ion-modal-view class="modal walkdetails">
+    <ion-content>
+        <div class="walkdetails title">
+            <div class="walkdetails name">
+                <p>{{walkdetails.name}}</p>
+            </div>
+        </div>
+        <hr class="walkdetails line">
+        <div class="walkdetails body">
+            <div class="walkdetails description">
+                <p>{{walkdetails.description}}</p>
+            </div>
+            <button class="cancel" ng-click="closeWalk()"></button>
+            <button class="done" ng-click="startWalk()"></button>
+        </div>
+    </ion-content>
+</ion-modal-view>

@@ -4,11 +4,12 @@
       <div class="list">
         <label class="item smell-name">
     		<span class="title smell-name">HERE I SMELL:</span>
-    		<input class="input smell-name" type="text" ng-model="smell.description"readonly>
+        <span> <p> {{smell.description}} </p> </span>
+    		<input class="input smell-name" type="text" ng-model="smellData.description"readonly>
         </label>
         <label class="item">
     		<span class="title smell-assoc">SMELL ASSOCIATION</span>
-    		<textarea class=" input smell-assoc" rows="4" ng-model="smell.association" readonly></textarea>
+    		<textarea class=" input smell-assoc" rows="4" ng-model="smellData.association" readonly></textarea>
         </label>
         <button class="edit" ng-click="backToEdit()"></button>
         <button class="submit" ng-click="submitSmell()"></button>

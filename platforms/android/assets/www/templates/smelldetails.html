@@ -1,0 +1,19 @@
+<ion-modal-view class="modal smell-details">
+    <ion-content>
+        <div class="smell-details title">
+            <button class="smell-details close" ng-click="closeDetails()"></button>
+            <div class="smell-details description">
+                <p>{{smell.description}}</p>
+            </div>
+            <button class="smell-details share" ng-click="shareOnFb()"></button>
+        </div>
+        <hr class="smell-details line">
+        <ion-list>
+            <ion-item class="smell-details comments" ng-repeat="comment in comments">{{comment.body}} <hr class="smell-details line"> </ion-item>
+        </ion-list>
+        <div class="smell-details bottom">
+            <button class="smell-details disagree" ng-click="disagree()"></button>
+            <button class="smell-details agree" ng-click="agree({{smell.id}})"></button>
+        </div>
+    </ion-content>
+</ion-modal-view>

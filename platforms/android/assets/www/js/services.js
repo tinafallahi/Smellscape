@@ -5,5 +5,17 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('User', function ($resource) {
-    return $resource('/user/:userId');
+    return $resource('/users/:userId');
+})
+
+.factory('Comment', function ($resource) {
+	return $resource('/comments/:smellId');
+})
+
+.factory('Walk', function ($resource) {
+	return $resource('/walks/:walkId');
+})
+
+.factory('Point', function ($resource) {
+	return $resource('/points/:walkId');
 });
