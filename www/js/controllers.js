@@ -10,9 +10,15 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       scope: 'openid offline_access'
     }
   }, function(profile, idToken, accessToken, state, refreshToken) {
+    store.set('accessToken', accessToken);
     store.set('profile', profile);
     store.set('token', idToken);
     store.set('refreshToken', refreshToken);
+
+    // For OpenFB library 
+    var accessToken = profile.identities[0].access_token;
+    window.sessionStorage.setItem('fbtoken', accessToken);
+
     $state.go('app.home');
   }, function(error) {
     console.log("There was an error logging in", error);
@@ -118,12 +124,11 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     };
 
     $scope.shareOnFb = function(event) {
-    	// TODO: share on Facebook
       openFB.api({
         method: 'POST',
         path: '/me/feed',
         params: {
-            message: "Look at this smell: '" + $scope.smell.description
+            message: "Look at this smell I found: " + $scope.smell.description
         },
         success: function () {
             alert('The smell was shared on Facebook');
@@ -165,6 +170,11 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       $scope.detailsModal.hide();
 
     };
+
+    $scope.$on('$destroy', function() {
+      $scope.detailsModal.remove();
+      $scope.commentModal.remove();
+    });
 })
 
 .controller('AddSmellCtrl', function($scope, $ionicModal, $cordovaCamera, Smell, geolocation, store) {
@@ -300,11 +310,23 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     }
 
     $scope.shareOnFb = function() {
+      openFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "Look at this smell I added: " + $scope.smellData.description
+        },
+        success: function () {
+            alert('The smell was shared on Facebook');
+        },
+        error: function () {
+            alert('An error occurred while sharing this smell on Facebook');
+        }
+      });
       $scope.modalShare.hide();
     }
 
     $scope.$on('$destroy', function() {
-      console.log('Destroying modals...');
       $scope.modalAdd.remove();
       $scope.modalCheck.remove();
       $scope.modalShare.remove();
@@ -378,7 +400,19 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
     }
 
     $scope.shareOnFb = function () {
-    	// TODO: share on facebook
+      /*openFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "Look at this smell I found: " + $scope.smell.description
+        },
+        success: function () {
+            alert('The smell was shared on Facebook');
+        },
+        error: function () {
+            alert('An error occurred while sharing this smell on Facebook');
+        }
+      });*/ 
     }
 
     $scope.closeWalks = function () {
@@ -421,5 +455,10 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
           }
         }
       });
-    }     
+    } 
+
+    $scope.$on('$destroy', function() {
+      $scope.walkslistModal.remove();
+      $scope.walksdetailsModal.remove();
+    });    
 });

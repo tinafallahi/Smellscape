@@ -282,7 +282,12 @@ legend {
   border: 0px solid;
 }
 
+.add-smell.share.table {
+  display: table;
+}
+
 .share.cancel {
+  display: table-cell;
   height: 30px;
   width: 35px;
   margin-left: 5%;
@@ -296,10 +301,10 @@ legend {
 }
 
 .button.share {
+  display: table-cell;
   height: 40px;
   width: 45px;
-  margin-left: 60%;
-  margin-top: 12%;
+  margin-top: 15%;
   background-image: url("../img/share.png");
   background-repeat: no-repeat center center fixed;
   background-color: Transparent;
@@ -308,11 +313,10 @@ legend {
 }
 
 .share.smell-name {
+  display: table-cell;
   background-color: #FAFAED !important;
-  width: 50%;
-  margin-right: 30%;
+  /*width: 50%;*/
   margin-top: 15%;
-  float: right;
 }
 
 /***************** SMELLS PAGE STYLES *******************/ 
