@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var Promise = require('bluebird');
 var models = require('./server/models')(bookshelf);
 var url = require('url');
+var forecast = require('forecast');
 
 /////// APP SETUP ///////
 var app = express();
@@ -18,6 +19,17 @@ logger = {
   warn: config.warn,
   error: config.error
 };
+
+var forcaster = new forecast({
+  service: 'forecast.io',
+  key: '3edd9fe60b9ffe8a69c5c2fe9fd4b479',
+  cache: true,      
+  ttl: {            // Results are cached for this long. 
+    minutes: 60,
+    seconds: 00
+    }
+});
+
 
 app.use(function(req, res, next) {
   logger.debug(req.method, req.url);
@@ -83,15 +95,26 @@ app.get('/users/:userId', function(req, res) {
 })
 
 app.post('/smells', function(req, res) {
-	new models.Smell(req.body)
-	.save()
-	.then(function (smell) {
+  var addSmell = new models.Smell(req.body);
+
+  addSmell.attributes.date = new Date();
+
+  forcaster.get([addSmell.attributes.latitude, addSmell.attributes.longitude], function(err, weather) {
+    if(err) {
+      logger.error(err);
+    }
+    addSmell.attributes.windspeed = weather.currently.windSpeed;
+    addSmell.attributes.winddirection = weather.currently.windBearing;
+
+    addSmell.save()
+    .then(function (smell) {
 		res.json({error: false, data: {id: smell.get('id')}});
 	})
 	.otherwise(function (err) {
 		console.log(err);
 		res.status(500).json({error: true, data: {message: err.message}});
 	});
+  })
 })
 
 app.get('/smells', function(req, res) {

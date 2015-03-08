@@ -23,7 +23,7 @@
     "pg": "4.x",
     "when": "^3.6.4", 
     "mocha": "*",
-    "chai": "*", 
+    "chai": ">= 1.6.1 < 2", 
     "request": "*"
   },
   "engines": {

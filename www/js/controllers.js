@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
   }
 })
 
-.controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comment, store) {
+.controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comment, store, geolocation) {
     $scope.smells = Smell.query();
 
     $scope.map = {
@@ -85,6 +85,11 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
                     iconAnchor:   [22, 54]
                 }
     }
+
+    geolocation.getLocation().then(function(data){
+      	$scope.map.center.lat = data.coords.latitude;
+      	$scope.map.center.lng = data.coords.longitude;
+      });
 
     $scope.markers = new Array();
 
@@ -202,6 +207,28 @@ angular.module('starter.controllers', ['starter.services', 'leaflet-directive', 
       }
 
       $scope.markers = new Array();
+
+      geolocation.getLocation().then(function(data){
+      	$scope.map.center.lat = data.coords.latitude;
+      	$scope.map.center.lng = data.coords.longitude;
+
+      	$scope.markers.push({
+                      lat: data.coords.latitude,
+                      lng: data.coords.longitude,
+                      icon: local_icons.smellIcon,
+                      focus: true
+                  });
+
+      	var profile = store.get('profile');
+                var userId = profile.user_id;
+
+                $scope.smellData = {};
+                $scope.smellData.userid = userId;
+                $scope.smellData.strength = 3;
+                $scope.smellData.dynamicness = 3;
+                $scope.smellData.likeability = 3;
+                $scope.modalAdd.show();
+      });
 
       $ionicModal.fromTemplateUrl('templates/smellform.html', {
                   id: '1', 
