@@ -194,7 +194,10 @@ app.get('/walks/:walkId', function(req, res) {
 
 app.get('/points/:walkId', function(req, res) {
   new models.Point()
-    .query({where: {walkid: req.params.walkId}})
+    .query(function(qb) {
+      qb.where({walkid: req.params.walkId});
+      qb.orderBy('sequence', 'ASC');
+    })
     .fetchAll()
     .then(function (walks) {
       res.send(walks.toJSON());
