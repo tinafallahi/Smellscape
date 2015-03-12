@@ -529,11 +529,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
           follow: true,
           showPopup: false, 
           onLocationError: onLocationError});
-
         $scope.locator.addTo(map);
-
-        console.log($scope.locator);
-
         function onLocationError(e) {
           alert("Current location not found: " + e.message);
         }
@@ -567,10 +563,13 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         });
         $scope.routing.setWaypoints(waypoints);
         // TODO: Remove the markers for the waypoints.
+        console.log(routing);
         $scope.routing.addTo(map);
 
           // Adding smell walk distance and duration to the details modal. 
           $scope.routing.getRouter().route($scope.routing.getWaypoints(), function(err, routes) {
+          	console.log(err);
+          	console.log(routes);
             $scope.walkdetails.distance = routes[0].summary.totalDistance;
             $scope.walkdetails.duration = routes[0].summary.totalTime;
           });
