@@ -8,9 +8,10 @@
         <hr class="walkdetails line">
         <div class="walkdetails body">
             <div class="walkdetails description">
-                <p>{{walkdetails.description}}</p>
+                <p>Description: {{walkdetails.description}}</p>
                 <p>Distance:  {{walkdetails.distance}} meters</p>
                 <p>Duration:  {{walkdetails.duration}} seconds</p>
+                <p>Start Point is {{walkdetails.distanceFromStart}} minutes away.</p>
             </div>
             <button class="cancel" ng-click="closeWalk()"></button>
             <button class="done" ng-click="startWalk()"></button>
