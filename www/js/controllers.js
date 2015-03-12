@@ -564,10 +564,12 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         $scope.routing.setWaypoints(waypoints);
         // TODO: Remove the markers for the waypoints.
         console.log($scope.routing);
+        console.log(waypoints);
         $scope.routing.addTo(map);
 
           // Adding smell walk distance and duration to the details modal. 
           $scope.routing.getRouter().route($scope.routing.getWaypoints(), function(err, routes) {
+          	console.log($scope.routing.getWaypoints());
           	console.log(err);
           	console.log(routes);
             $scope.walkdetails.distance = routes[0].summary.totalDistance;
