@@ -22,9 +22,9 @@
     "lodash": "^2.4.1",
     "mysql": "^2.5.4",
     "pg": "4.x",
-    "when": "^3.6.4",
+    "when": "^3.6.4", 
     "mocha": "*",
-    "chai": ">= 1.6.1 < 2",
+    "chai": ">= 1.6.1 < 2", 
     "request": "*"
   },
   "engines": {
@@ -48,6 +48,6 @@
   "cordovaPlugins": [
     "org.apache.cordova.inappbrowser",
     "org.apache.cordova.camera"
-  ],
+  ], 
   "license": "MIT"
 }

@@ -1,21 +1,21 @@
 angular.module('starter.services', ['ngResource'])
 
 .factory('Smell', function ($resource) {
-    return $resource('https://smellscape.herokuapp.com/smells/:smellId');
+    return $resource('/smells/:smellId');
 })
 
 .factory('User', function ($resource) {
-    return $resource('https://smellscape.herokuapp.com/users/:userId');
+    return $resource('/users/:userId');
 })
 
 .factory('Comment', function ($resource) {
-	return $resource('https://smellscape.herokuapp.com/comments/:smellId');
+	return $resource('/comments/:smellId');
 })
 
 .factory('Walk', function ($resource) {
-	return $resource('https://smellscape.herokuapp.com/walks/:walkId');
+	return $resource('/walks/:walkId');
 })
 
 .factory('Point', function ($resource) {
-	return $resource('https://smellscape.herokuapp.com/points/:walkId');
+	return $resource('/points/:walkId');
 });
