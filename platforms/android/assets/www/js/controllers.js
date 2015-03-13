@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
     var local_icons = {
                 defaultIcon: {},
                 smellIcon: {
-                    iconUrl: 'img/smell-marker.png',
+                    iconUrl: 'img/green-marker.png',
                     iconSize:     [38, 55],
                     iconAnchor:   [22, 54]
                 }
@@ -283,7 +283,6 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
       $scope.smellData = {};
 
     $scope.takePic = function() {
-      alert("cam function! ");
       var options = { 
             quality : 75, 
             destinationType : Camera.DestinationType.DATA_URL, 
@@ -305,6 +304,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 
     $scope.closeAdd = function() {
       $scope.modalAdd.hide();
+      $scope.markers = new Array();
     };
 
     $scope.continueAdd = function() {
@@ -333,6 +333,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 
     $scope.smellDone = function() {
       $scope.modalShare.hide();
+      $scope.markers = new Array();
     }
 
     $scope.shareOnFb = function() {
@@ -350,6 +351,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         }
       });
       $scope.modalShare.hide();
+      $scope.markers = new Array();
     }
 
     $scope.$on('$destroy', function() {
@@ -359,7 +361,10 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
     });
 })
 
-.controller('WalksCtrl', function($scope, $ionicModal, $timeout, Walk, Smell, Point) {
+.controller('WalksCtrl', function($scope, $ionicModal, $timeout, Walk, Smell, Point, Comment, leafletData, geolocation, store, $state) {
+  $scope.pickButton = true; 
+  $scope.addButton = false; 
+  $scope.quitButton = false; 
   $scope.map = {
     	defaults: {
           	// http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png for retina display
@@ -369,13 +374,14 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         center: {
             autoDiscover: true,
             zoom: 16
-        }, 
-        events: {}
+        },
+        events: {
+          marker: {
+            enable: [ 'click' ], 
+            logic: 'emit'
+          }
+        }
     };
-
-    //$scope.map.locate({setView : true});
-
-    //console.log($scope.map.locate);
 
     var local_icons = {
                 defaultIcon: {},
@@ -393,6 +399,11 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                     iconUrl: 'img/start-point.png',
                     iconSize:     [20, 20],
                     iconAnchor:   [10, 10]
+                }, 
+                addIcon: {
+                    iconUrl: 'img/smell-marker.png',
+                    iconSize:     [38, 55],
+                    iconAnchor:   [22, 54]
                 }
     }
 
@@ -422,6 +433,65 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         $scope.walksdetailsModal = modal;
     });
 
+    $ionicModal.fromTemplateUrl('templates/smellform.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.modalAdd = modal;
+      });
+
+    $ionicModal.fromTemplateUrl('templates/smellcheck.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.modalCheck = modal;
+      });
+
+    $ionicModal.fromTemplateUrl('templates/walkfinish.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.modalFinish = modal;
+      });
+
+    $ionicModal.fromTemplateUrl('templates/smelldetails.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.detailsModal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('templates/addcomment.html', {
+                  scope: $scope
+                }).then(function(modal) {
+                  $scope.commentModal = modal;
+    });
+
+    $scope.$on('leafletDirectiveMarker.click', function (e, args) {
+      // TODO: Check if marker has an id set. 
+      $scope.detailsModal.show();
+
+      $scope.id = args.leafletEvent.target.options.id;
+      $scope.smell = Smell.get({smellId: $scope.id});
+      $scope.comments = Comment.query({smellId: $scope.id});
+    });
+
+    $scope.$on("leafletDirectiveMap.click", function(event, args){
+                var leafEvent = args.leafletEvent;
+                $scope.markers.push({
+                    lat: leafEvent.latlng.lat,
+                    lng: leafEvent.latlng.lng,
+                    icon: local_icons.addIcon,
+                    focus: true
+                });
+
+                var profile = store.get('profile');
+                var userId = profile.user_id;
+
+                $scope.smellData = {};
+                $scope.smellData.userid = userId;
+                $scope.smellData.strength = 3;
+                $scope.smellData.dynamicness = 3;
+                $scope.smellData.likeability = 3;
+                $scope.modalAdd.show();
+      });
+
     $scope.walks = Walk.query();
 
     $scope.pickWalk = function () {
@@ -441,7 +511,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         error: function () {
             alert('An error occurred while sharing this smell on Facebook');
         }
-      });*/ 
+      });*/
     }
 
     $scope.closeWalks = function () {
@@ -449,45 +519,250 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
     }
 
     $scope.showDetails = function (walkid) {
+      // Getting walk and points information from database.
       $scope.walkdetails = Walk.get({walkId: walkid});
+      $scope.points = Point.query({walkId: walkid});
+
+      leafletData.getMap().then(function(map) {
+        // Adding current location control to map. 
+        $scope.locator = L.control.locate({ 
+          follow: true,
+          showPopup: false, 
+          onLocationError: onLocationError});
+        $scope.locator.addTo(map);
+        function onLocationError(e) {
+          alert("Current location not found: " + e.message);
+        }
+
+        // Code for adding points as waypoints
+        var waypoints = [];
+        var startLat; 
+        var startLng;
+        $scope.points.$promise.then(function(data) {
+          for (i=0; i<data.length; i++) {
+            if(i==1) {
+              startLat = data[i].latitude;
+              startLng = data[i].longitude;
+              $scope.markers.push({
+                seq : data[i].sequence,
+                lat: data[i].latitude,
+                lng: data[i].longitude,
+                icon: local_icons.startPointIcon
+              });
+              waypoints.push(L.latLng(data[i].latitude, data[i].longitude));
+            } else {
+              waypoints.push(L.latLng(data[i].latitude, data[i].longitude));
+            }
+          }
+
+          // Adding smell walk route to the map. 
+        $scope.routing = L.Routing.control({
+          show: false,
+          draggableWaypoints: false, 
+          addWaypoints: false
+        });
+        $scope.routing.setWaypoints(waypoints);
+        // TODO: Remove the markers for the waypoints.
+        $scope.routing.addTo(map);
+
+          // Adding smell walk distance and duration to the details modal. 
+          $scope.routing.getRouter().route($scope.routing.getWaypoints(), function(err, routes) {
+          	console.log(err);
+            $scope.walkdetails.distance = routes[0].summary.totalDistance;
+            $scope.walkdetails.duration = routes[0].summary.totalTime;
+          });
+
+          // Adding smell walk distance from start point to the details modal.
+          geolocation.getLocation().then(function(data){
+            $scope.distanceRouting = L.Routing.control({
+              show: false,
+              draggableWaypoints: false, 
+              addWaypoints: false, 
+              waypoints: [
+                L.latLng(data.coords.latitude, data.coords.longitude), 
+                L.latLng(startLat, startLng)
+              ]
+            });
+            $scope.distanceRouting.getRouter().route($scope.distanceRouting.getWaypoints(), function(err, routes) {
+              $scope.walkdetails.distanceFromStart = Math.round(routes[0].summary.totalTime / 60);
+            });
+          });
+        });
+      });
+
       $scope.walksdetailsModal.show();
     }
 
     $scope.closeWalk = function () {
       $scope.walksdetailsModal.hide();
+      leafletData.getMap().then(function(map) {
+        map.removeControl($scope.locator);
+      });
     }
 
     $scope.startWalk = function () { 
+      $scope.pickButton = false; 
+      $scope.addButton = true; 
+      $scope.quitButton = true; 
       $scope.walksdetailsModal.hide();
       $scope.walkslistModal.hide();
-      console.log($scope.map);
-      $scope.points = Point.query({walkId: $scope.walkdetails.id});
+      $scope.locator.start();
+    } 
 
-      $scope.points.$promise.then(function(data) {
+    $scope.addSmell = function () {
+      geolocation.getLocation().then(function(data){
+        $scope.map.center.lat = data.coords.latitude;
+        $scope.map.center.lng = data.coords.longitude;
+
+        $scope.markers.push({
+                      lat: data.coords.latitude,
+                      lng: data.coords.longitude,
+                      icon: local_icons.addIcon,
+                      focus: true
+                  });
+
+        var profile = store.get('profile');
+                var userId = profile.user_id;
+
+                $scope.smellData = {};
+                $scope.smellData.userid = userId;
+                $scope.smellData.strength = 3;
+                $scope.smellData.dynamicness = 3;
+                $scope.smellData.likeability = 3;
+                $scope.modalAdd.show();
+      });
+      $scope.modalAdd.show();
+    }
+
+    $scope.takePic = function() {
+        var options = { 
+            quality : 75, 
+            destinationType : Camera.DestinationType.DATA_URL, 
+            sourceType : Camera.PictureSourceType.CAMERA, 
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 300,
+            targetHeight: 300,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+ 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+        }, function(err) {
+            // TODO: An error occured. Show a message to the user
+        });
+      }
+
+      $scope.closeAdd = function() {
+        $scope.modalAdd.hide();
+        $scope.markers.pop();
+      };
+
+      $scope.continueAdd = function() {
+        $scope.modalAdd.hide();
+        $scope.modalCheck.show();
+      };
+
+      $scope.backToEdit = function() {
+        $scope.modalCheck.hide();
+        $scope.modalAdd.show();
+      }
+
+      $scope.submitSmell = function() {
+        $scope.modalCheck.hide();
+
+        geolocation.getLocation().then(function(data){
+          $scope.smellData.latitude = data.coords.latitude;
+          $scope.smellData.longitude = data.coords.longitude;
+
+          var smell = new Smell($scope.smellData);
+          smell.$save();
+
+          $scope.modalShare.show();
+        }); 
+      }
+
+    $scope.quitWalk = function () {
+      $scope.pickButton = true; 
+      $scope.addButton = false; 
+      $scope.quitButton = false; 
+      $scope.modalFinish.show();
+
+      $scope.routing.setWaypoints(new Array());
+      $scope.markers = new Array();
+
+      $scope.smells = Smell.query();
+      $scope.smells.$promise.then(function(data) {
         for (i=0; i<data.length; i++) {
-          if(i==1) {
-            $scope.markers.push({
+          $scope.markers.push({
             id : data[i].id,
             lat: data[i].latitude,
             lng: data[i].longitude,
-            icon: local_icons.startPointIcon
+            icon: local_icons.smellIcon
           });
-            $scope.map.center.lat=data[i].latitude;
-            $scope.map.center.lng=data[i].longitude;
-          } else {
-            $scope.markers.push({
-            id : data[i].id,
-            lat: data[i].latitude,
-            lng: data[i].longitude,
-            icon: local_icons.pointIcon
-          });
-          }
         }
       });
-    } 
+    }
+
+    $scope.closeFinish = function () {
+      $scope.modalFinish.hide();
+    }
+
+    $scope.closeDetails = function() {
+      $scope.detailsModal.hide();
+    };
+
+    $scope.shareOnFb = function(event) {
+      openFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "Look at this smell I found: " + $scope.smell.description
+        },
+        success: function () {
+            alert('The smell was shared on Facebook');
+        },
+        error: function () {
+            alert('An error occurred while sharing this smell on Facebook');
+        }
+      }); 
+    };
+
+    $scope.agree = function() {
+      $scope.commentModal.show();
+    };
+
+    $scope.disagree = function() {
+      $scope.detailsModal.hide();
+      $state.go('app.addsmell');
+    };
+
+    $scope.closeComment = function() {
+      $scope.commentModal.hide();
+    };
+
+    var profile = store.get('profile');
+    var userId = profile.user_id;
+
+    $scope.commentData = {
+      userid: userId, 
+      agree: true, 
+      body: '',
+      smellid: 0
+    };
+
+    $scope.addComment = function() {
+      $scope.commentData.smellid = $scope.smell.id;
+      var comment = new Comment($scope.commentData);
+      comment.$save();
+      $scope.commentModal.hide();
+      $scope.detailsModal.hide();
+
+    };
 
     $scope.$on('$destroy', function() {
       $scope.walkslistModal.remove();
       $scope.walksdetailsModal.remove();
-    });    
+    });
 });
