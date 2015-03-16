@@ -160,8 +160,11 @@ app.get('/comments', function(req, res) {
 })
 
 app.get('/comments/:smellId', function(req, res) {
+  var emptyString = '';
   new models.Comment()
-    .query({where: {smellid: req.params.smellId}})
+    .query(function(qb) {
+      qb.where('smellid', req.params.smellId).andWhere('body', '<>', emptyString);
+    })
     .fetchAll()
     .then(function (comments) {
       res.send(comments.toJSON());

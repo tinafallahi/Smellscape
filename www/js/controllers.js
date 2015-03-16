@@ -222,6 +222,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 var userId = profile.user_id;
 
                 $scope.smellData = {};
+                $scope.imgURI = "";
                 $scope.smellData.userid = userId;
                 $scope.smellData.strength = 3;
                 $scope.smellData.dynamicness = 3;
@@ -273,6 +274,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 var userId = profile.user_id;
 
                 $scope.smellData = {};
+                $scope.imgURI = "";
                 $scope.smellData.userid = userId;
                 $scope.smellData.strength = 3;
                 $scope.smellData.dynamicness = 3;
@@ -318,17 +320,21 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
     }
 
     $scope.submitSmell = function() {
-      $scope.modalCheck.hide();
+      if(!$scope.smellData.description) {
+        alert("You are trying to add a smell without a name, please go back and add a name."); 
+      } else {
+        $scope.modalCheck.hide();
 
-      geolocation.getLocation().then(function(data){
-        $scope.smellData.latitude = data.coords.latitude;
-        $scope.smellData.longitude = data.coords.longitude;
+        geolocation.getLocation().then(function(data){
+          $scope.smellData.latitude = data.coords.latitude;
+          $scope.smellData.longitude = data.coords.longitude;
 
-        var smell = new Smell($scope.smellData);
-        smell.$save();
+          var smell = new Smell($scope.smellData);
+          smell.$save();
 
-        $scope.modalShare.show();
-      }); 
+          $scope.modalShare.show();
+        }); 
+      }
     }
 
     $scope.smellDone = function() {
@@ -485,6 +491,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 var userId = profile.user_id;
 
                 $scope.smellData = {};
+                $scope.imgURI = "";
                 $scope.smellData.userid = userId;
                 $scope.smellData.strength = 3;
                 $scope.smellData.dynamicness = 3;
@@ -569,7 +576,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
           // Adding smell walk distance and duration to the details modal. 
           $scope.routing.getRouter().route($scope.routing.getWaypoints(), function(err, routes) {
           	console.log(err);
+            console.log(routes[0].summary.totalDistance);
             $scope.walkdetails.distance = Math.round(routes[0].summary.totalDistance / 1000);
+            console.log(routes[0].summary.totalTime);
             $scope.walkdetails.duration = Math.round(routes[0].summary.totalTime / 60);
           });
 
@@ -626,6 +635,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 var userId = profile.user_id;
 
                 $scope.smellData = {};
+                $scope.imgURI = "";
                 $scope.smellData.userid = userId;
                 $scope.smellData.strength = 3;
                 $scope.smellData.dynamicness = 3;
@@ -671,6 +681,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
       }
 
       $scope.submitSmell = function() {
+        if(!$scope.smellData.description) {
+        alert("You are trying to add a smell without a name, please go back and add a name."); 
+      } else {
         $scope.modalCheck.hide();
 
         geolocation.getLocation().then(function(data){
@@ -682,6 +695,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 
           $scope.modalShare.show();
         }); 
+      }
       }
 
     $scope.quitWalk = function () {
