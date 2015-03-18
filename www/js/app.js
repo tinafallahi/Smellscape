@@ -95,6 +95,16 @@ angular.module('starter', ['ionic',
     }
 })
 
+  .state('app.info', {
+    url: "/info",
+    views: {
+        'menuContent': {
+          templateUrl: "templates/info.html",
+          controller: 'InfoCtrl'
+      }
+    }
+})
+
   .state('app.walks', {
     url: '/walks',
     views: {

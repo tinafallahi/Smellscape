@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-directive', 'ngCordova', 'geolocation'])
+angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-directive', 'ngCordova', 'geolocation', 'angular-carousel'])
 
 .controller('LoginCtrl', function($scope, auth, $state, store) {
   $scope.signin = function() {
@@ -35,6 +35,10 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
     store.remove('refreshToken');
     $state.go('login');
   }
+})
+
+.controller('InfoCtrl', function($scope, auth, $state, store) {
+    // Load three images
 })
 
 .controller('AppCtrl', function($scope, $ionicModal, $state) {
@@ -577,9 +581,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
           $scope.routing.getRouter().route($scope.routing.getWaypoints(), function(err, routes) {
           	console.log(err);
             console.log(routes[0].summary.totalDistance);
-            $scope.walkdetails.distance = Math.round(routes[0].summary.totalDistance / 1000);
-            console.log(routes[0].summary.totalTime);
-            $scope.walkdetails.duration = Math.round(routes[0].summary.totalTime / 60);
+            $scope.walkdetails.distance = (routes[0].summary.totalDistance / 1000).toFixed(2);
+            $scope.walkdetails.duration = Math.round((routes[0].summary.totalDistance * 60) / 2000);
           });
 
           // Adding smell walk distance from start point to the details modal.
@@ -594,7 +597,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
               ]
             });
             $scope.distanceRouting.getRouter().route($scope.distanceRouting.getWaypoints(), function(err, routes) {
-              $scope.walkdetails.distanceFromStart = Math.round(routes[0].summary.totalTime / 60);
+              $scope.walkdetails.distanceFromStart = Math.round((routes[0].summary.totalDistance * 60) / 2000);
             });
           });
         });
