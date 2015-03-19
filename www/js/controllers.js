@@ -570,8 +570,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         $scope.routing = L.Routing.control({
           show: false,
           draggableWaypoints: false, 
-          addWaypoints: false, 
-          createMarker: function (i, waypoint, n) { return null; } 
+          addWaypoints: false
+          //createMarker: function (i, waypoint, n) { return null; } 
         });
         $scope.routing.setWaypoints(waypoints);
         // TODO: Remove the markers for the waypoints.
