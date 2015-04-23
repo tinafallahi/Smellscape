@@ -139,7 +139,7 @@ angular.module('starter', ['ionic',
     } else {
       return idToken;
     }
-  }
+  };
 
   $httpProvider.interceptors.push('jwtInterceptor');
 }).run(function($rootScope, auth, store) {

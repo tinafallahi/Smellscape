@@ -36,5 +36,5 @@ module.exports = function(bookshelf) {
     Settings: Settings,
     Started: Started,
     Walk: Walk
-  }
-}
+  };
+};

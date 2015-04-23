@@ -3,6 +3,7 @@ module.exports = function(grunt) {
 
   var tests = 'test/*.js';
   var tasks = ['server/*.js', 'server.js'];
+  var client = 'www/js/*.js';
   var reportDir = 'build/reports/';
 
   grunt.initConfig({
@@ -21,7 +22,7 @@ module.exports = function(grunt) {
       tasks : 'default'
     },
     jshint : {
-      files : [ 'Gruntfile.js', tasks, tests ],
+      files : [ 'Gruntfile.js', tasks, tests, client],
       options : {
         curly : true,
         eqeqeq : true,
@@ -30,7 +31,7 @@ module.exports = function(grunt) {
         newcap : true,
         noarg : true,
         sub : true,
-        undef : true,
+        //undef : true,
         boss : true,
         eqnull : true,
         node : true

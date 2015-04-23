@@ -25,7 +25,9 @@
     "when": "^3.6.4",
     "mocha": "*",
     "chai": ">= 1.6.1 < 2",
-    "request": "*"
+    "request": "*",
+    "ejs": "*", 
+    "aws-sdk": "*"
   },
   "devDependencies": {
     "bower": "^1.3.3",

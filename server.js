@@ -1,4 +1,5 @@
 var pg = require('pg');
+var fs = require('fs');
 var express = require('express');
 var http = require('http');
 var config = require('./server/config');
@@ -10,12 +11,13 @@ var models = require('./server/models')(bookshelf);
 var categorising = require('./server/categorising');
 var url = require('url');
 var forecast = require('forecast');
+var aws = require('aws-sdk');
 
 /////// APP SETUP ///////
 var app = express();
 
 // Logging 
-logger = {
+var logger = {
   debug: config.debug,
   warn: config.warn,
   error: config.error
@@ -27,7 +29,7 @@ var forcaster = new forecast({
   cache: true,      
   ttl: {            // Results are cached for this long. 
     minutes: 60,
-    seconds: 00
+    seconds: 0
     }
 });
 
@@ -71,7 +73,7 @@ app.post('/users', function(req, res) {
     logger.error(err);
 		res.status(500).json({error: true, data: {message: err.message}});
 	});
-})
+});
 
 app.get('/users', function(req, res) {
   new models.User().fetchAll()
@@ -81,7 +83,7 @@ app.get('/users', function(req, res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 app.get('/users/:userId', function(req, res) {
   new models.User({userid: 1})
@@ -92,17 +94,33 @@ app.get('/users/:userId', function(req, res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 app.post('/smells', function(req, res) {
   var addSmell = new models.Smell(req.body);
 
-  // TODO store image in S3 and add path to variable. 
-  // addSmell.attributes.visualisation is where the local path of image is. 
+  // Store images in S3 and adds path to database. 
+  if(addSmell.attributes.visualisation !== "") {
+    var s3 = new aws.S3();
+    var s3_params = {
+      Bucket: config.awskeys.S3_BUCKET,
+      Key: addSmell.attributes.visualisation,
+      Expires: 60,
+      ACL: 'public-read'
+    };
+    s3.getSignedUrl('putObject', s3_params, function(err, data){
+        if(err){
+            console.log(err);
+        }
+        else{
+            addSmell.attributes.visualisation = 'https://'+config.awskeys.S3_BUCKET+'.s3.amazonaws.com/'+s3_params.Key;
+        }
+    });
+  }
 
   addSmell.attributes.date = new Date();
 
-  var category = categorising.assignCategory(addSmell.attributes.description)
+  var category = categorising.assignCategory(addSmell.attributes.description);
   addSmell.attributes.categoryid = category;
 
   forcaster.get([addSmell.attributes.latitude, addSmell.attributes.longitude], function(err, weather) {
@@ -120,8 +138,8 @@ app.post('/smells', function(req, res) {
 		logger.error(err);
 		res.status(500).json({error: true, data: {message: err.message}});
 	});
-  })
-})
+  });
+});
 
 app.get('/smells', function(req, res) {
   new models.Smell().fetchAll()
@@ -131,7 +149,7 @@ app.get('/smells', function(req, res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 app.get('/smells/:id', function(req, res) {
   new models.Smell({id: req.params.id})
@@ -142,7 +160,7 @@ app.get('/smells/:id', function(req, res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 app.post('/comments', function(req, res) {
 	new models.Comment(req.body)
@@ -154,7 +172,7 @@ app.post('/comments', function(req, res) {
 		logger.error(err);
 		res.status(500).json({error: true, data: {message: err.message}});
 	});
-})
+});
 
 app.get('/comments', function(req, res) {
   new models.Comment().fetchAll()
@@ -164,7 +182,7 @@ app.get('/comments', function(req, res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 app.get('/comments/:smellId', function(req, res) {
   var emptyString = '';
@@ -179,7 +197,7 @@ app.get('/comments/:smellId', function(req, res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 app.get('/walks', function(req,res) {
   new models.Walk().fetchAll()
@@ -189,7 +207,7 @@ app.get('/walks', function(req,res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 app.get('/walks/:walkId', function(req, res) {
   new models.Walk({id: req.params.walkId})
@@ -200,7 +218,7 @@ app.get('/walks/:walkId', function(req, res) {
       logger.error(error);
       res.send('An error occured');
    });
-})
+});
 
 app.get('/points/:walkId', function(req, res) {
   new models.Point()
@@ -215,7 +233,7 @@ app.get('/points/:walkId', function(req, res) {
       logger.error(error);
       res.send('An error occured');
     });
-})
+});
 
 /////// SERVER START /////// 
 app.use(express.static(__dirname + "/www"));

@@ -1,62 +1,3 @@
-module.exports = {
-  assignCategory: function (description) {
-    var punctuationless = description.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-    var lowercase = punctuationless.toLowerCase();
-    var words = lowercase.split(" ");
-
-    if(words.length >= 3){
-      return "CX";
-    }
-
-    var count = 0;
-    var categories = new Array();
-    for(i = 0; i < words.length; i++) {
-      if(tr.indexOf(words[i]) != -1) {
-        categories.push("TR");
-      } else if (id.indexOf(words[i]) != -1) {
-        categories.push("ID");
-      } else if (fd.indexOf(words[i]) != -1) {
-        categories.push("FD");
-      } else if (sk.indexOf(words[i]) != -1) {
-        categories.push("SK");
-      } else if (cl.indexOf(words[i]) != -1) {
-        categories.push("CL");
-      } else if (sy.indexOf(words[i]) != -1) {
-        categories.push("SY");
-      } else if (ws.indexOf(words[i]) != -1) {
-        categories.push("WS");
-      } else if (hu.indexOf(words[i]) != -1) {
-        categories.push("HU");
-      } else if (nt.indexOf(words[i]) != -1) {
-        categories.push("NT");
-      } else if (cn.indexOf(words[i]) != -1) {
-        categories.push("CN");
-      } else if (nf.indexOf(words[i]) != -1) {
-        categories.push("NF");
-      } else if (em.indexOf(words[i]) != -1) {
-        categories.push("EM");
-      } 
-      count ++;
-    }
-
-    if(categories.length == 0) {
-      return "NA";
-    }
-
-    if(categories.length == 1) {
-      return categories[0];
-    }
-
-    if(categories.length == 2) {
-      if(categories[0] == categories[1]) {
-        return categories[0];
-      } else {
-        return "CX";
-      }
-    }
-  }
-}
-
 // Categories: "TR", "ID", "FD", "SK", "CL", "SY", "WS", "HU", "NT", "CN", "NF", "EM"
 
 var tr = ["car", "bus", "lorry", "tram", "train", "fumes", "traffic", "rubber", "tire", "tyre", "fuel", "gasonline", "petrol"];
@@ -86,6 +27,61 @@ var nf = ["cardboard", "leather", "paper", "plastic", "new clothes", "shoes", "i
 
 var em = ["anger", "fear", "sadness", "disgust", "surprise", "anticipation", "trust", "joy"];
 
-function categoryPerWord (word) {
-  return "FU";
-}
+module.exports = {
+  assignCategory: function (description) {
+    var punctuationless = description.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    var lowercase = punctuationless.toLowerCase();
+    var words = lowercase.split(" ");
+
+    if(words.length >= 3){
+      return "CX";
+    }
+
+    var count = 0;
+    var categories = [];
+    for(var i = 0; i < words.length; i++) {
+      if(tr.indexOf(words[i]) !== -1) {
+        categories.push("TR");
+      } else if (id.indexOf(words[i]) !== -1) {
+        categories.push("ID");
+      } else if (fd.indexOf(words[i]) !== -1) {
+        categories.push("FD");
+      } else if (sk.indexOf(words[i]) !== -1) {
+        categories.push("SK");
+      } else if (cl.indexOf(words[i]) !== -1) {
+        categories.push("CL");
+      } else if (sy.indexOf(words[i]) !== -1) {
+        categories.push("SY");
+      } else if (ws.indexOf(words[i]) !== -1) {
+        categories.push("WS");
+      } else if (hu.indexOf(words[i]) !== -1) {
+        categories.push("HU");
+      } else if (nt.indexOf(words[i]) !== -1) {
+        categories.push("NT");
+      } else if (cn.indexOf(words[i]) !== -1) {
+        categories.push("CN");
+      } else if (nf.indexOf(words[i]) !== -1) {
+        categories.push("NF");
+      } else if (em.indexOf(words[i]) !== -1) {
+        categories.push("EM");
+      } 
+      count ++;
+    }
+
+    if(categories.length === 0) {
+      return "NA";
+    }
+
+    if(categories.length === 1) {
+      return categories[0];
+    }
+
+    if(categories.length === 2) {
+      if(categories[0] === categories[1]) {
+        return categories[0];
+      } else {
+        return "CX";
+      }
+    }
+  }
+};

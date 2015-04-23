@@ -34,7 +34,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
     store.remove('profile');
     store.remove('refreshToken');
     $state.go('login');
-  }
+  };
 })
 
 .controller('InfoCtrl', function($scope, auth, $state, store) {
@@ -53,15 +53,15 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 
   $scope.add = function() {
     $state.go('app.addsmell');
-  }
+  };
 
   $scope.find = function() {
     $state.go('app.smells');
-  }
+  };
 
   $scope.walks = function() {
     $state.go('app.walks');
-  }
+  };
 })
 
 .controller('SmellsCtrl', function($scope, $state, $ionicModal, Smell, Comment, store, geolocation) {
@@ -92,17 +92,17 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                     iconSize:     [38, 55],
                     iconAnchor:   [22, 54]
                 }
-    }
+    };
 
     geolocation.getLocation().then(function(data){
       	$scope.map.center.lat = data.coords.latitude;
       	$scope.map.center.lng = data.coords.longitude;
       });
 
-    $scope.markers = new Array();
+    $scope.markers = [];
 
     $scope.smells.$promise.then(function(data) {
-        for (i=0; i<data.length; i++) {
+        for (var i=0; i<data.length; i++) {
           $scope.markers.push({
             id : data[i].id,
             lat: data[i].latitude,
@@ -212,9 +212,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                     iconSize:     [38, 55],
                     iconAnchor:   [22, 54]
                 }
-      }
+      };
 
-      $scope.markers = new Array();
+      $scope.markers = [];
 
       geolocation.getLocation().then(function(data){
       	$scope.map.center.lat = data.coords.latitude;
@@ -263,7 +263,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 
       $scope.$on("leafletDirectiveMap.click", function(event, args){
                 var leafEvent = args.leafletEvent;
-                if($scope.markers.length == 0) {
+                if($scope.markers.length === 0) {
                   $scope.markers.push({
                       lat: leafEvent.latlng.lat,
                       lng: leafEvent.latlng.lng,
@@ -314,11 +314,11 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         }, function(err) {
             alert("Sorry having issues with the camera.");
         });
-    }
+    };
 
     $scope.closeAdd = function() {
       $scope.modalAdd.hide();
-      $scope.markers = new Array();
+      $scope.markers = [];
     };
 
     $scope.continueAdd = function() {
@@ -329,7 +329,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
     $scope.backToEdit = function() {
       $scope.modalCheck.hide();
       $scope.modalAdd.show();
-    }
+    };
 
     $scope.submitSmell = function() {
       if(!$scope.smellData.description) {
@@ -347,12 +347,12 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
           $scope.modalShare.show();
         }); 
       }
-    }
+    };
 
     $scope.smellDone = function() {
       $scope.modalShare.hide();
-      $scope.markers = new Array();
-    }
+      $scope.markers = [];
+    };
 
     $scope.shareOnFb = function() {
       openFB.api({
@@ -369,8 +369,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         }
       });
       $scope.modalShare.hide();
-      $scope.markers = new Array();
-    }
+      $scope.markers = [];
+    };
 
     $scope.$on('$destroy', function() {
       $scope.modalAdd.remove();
@@ -423,13 +423,13 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                     iconSize:     [38, 55],
                     iconAnchor:   [22, 54]
                 }
-    }
+    };
 
-    $scope.markers = new Array();
+    $scope.markers = [];
 
     $scope.smells = Smell.query();
     $scope.smells.$promise.then(function(data) {
-        for (i=0; i<data.length; i++) {
+        for (var i=0; i<data.length; i++) {
           $scope.markers.push({
             id : data[i].id,
             lat: data[i].latitude,
@@ -515,7 +515,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 
     $scope.pickWalk = function () {
       $scope.walkslistModal.show();
-    }
+    };
 
     $scope.shareOnFb = function () {
       /*openFB.api({
@@ -531,11 +531,11 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
             alert('An error occurred while sharing this smell on Facebook');
         }
       });*/
-    }
+    };
 
     $scope.closeWalks = function () {
     	$scope.walkslistModal.hide();
-    }
+    };
 
     $scope.showDetails = function (walkid) {
       // Getting walk and points information from database.
@@ -558,8 +558,8 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         var startLat; 
         var startLng;
         $scope.points.$promise.then(function(data) {
-          for (i=0; i<data.length; i++) {
-            if(i==1) {
+          for (var i=0; i<data.length; i++) {
+            if(i===1) {
               startLat = data[i].latitude;
               startLng = data[i].longitude;
               $scope.markers.push({
@@ -612,14 +612,14 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
       });
 
       $scope.walksdetailsModal.show();
-    }
+    };
 
     $scope.closeWalk = function () {
       $scope.walksdetailsModal.hide();
       leafletData.getMap().then(function(map) {
         map.removeControl($scope.locator);
       });
-    }
+    };
 
     $scope.startWalk = function () { 
       $scope.pickButton = false; 
@@ -628,7 +628,14 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
       $scope.walksdetailsModal.hide();
       $scope.walkslistModal.hide();
       $scope.locator.start();
-    } 
+
+      $scope.$watch($scope.locator._event, function(newValue, oldValue) {
+        console.log(newValue);
+      });
+
+      console.log($scope.locator._marker);
+
+    }; 
 
     $scope.addSmell = function () {
       geolocation.getLocation().then(function(data){
@@ -654,7 +661,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 $scope.modalAdd.show();
       });
       $scope.modalAdd.show();
-    }
+    };
 
     $scope.takePic = function() {
         var options = { 
@@ -674,7 +681,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
         }, function(err) {
             // TODO: An error occured. Show a message to the user
         });
-      }
+      };
 
       $scope.closeAdd = function() {
         $scope.modalAdd.hide();
@@ -689,7 +696,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
       $scope.backToEdit = function() {
         $scope.modalCheck.hide();
         $scope.modalAdd.show();
-      }
+      };
 
       $scope.submitSmell = function() {
         if(!$scope.smellData.description) {
@@ -707,7 +714,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
           $scope.modalShare.show();
         }); 
       }
-      }
+      };
 
     $scope.quitWalk = function () {
       $scope.pickButton = true; 
@@ -715,12 +722,12 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
       $scope.quitButton = false; 
       $scope.modalFinish.show();
 
-      $scope.routing.setWaypoints(new Array());
-      $scope.markers = new Array();
+      $scope.routing.setWaypoints([]);
+      $scope.markers = [];
 
       $scope.smells = Smell.query();
       $scope.smells.$promise.then(function(data) {
-        for (i=0; i<data.length; i++) {
+        for (var i=0; i<data.length; i++) {
           $scope.markers.push({
             id : data[i].id,
             lat: data[i].latitude,
@@ -729,11 +736,11 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
           });
         }
       });
-    }
+    };
 
     $scope.closeFinish = function () {
       $scope.modalFinish.hide();
-    }
+    };
 
     $scope.closeDetails = function() {
       $scope.detailsModal.hide();

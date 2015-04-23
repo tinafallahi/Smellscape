@@ -43,6 +43,6 @@ module.exports = function(model, resource, options) {
     } else {
       save_item(req.body, res);
     }
-  })
+  });
   return router;
-}
+};
