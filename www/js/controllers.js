@@ -236,6 +236,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 $scope.smellData.strength = 3;
                 $scope.smellData.dynamicness = 3;
                 $scope.smellData.likeability = 3;
+                $scope.smellData.visualisation = "";
                 $scope.modalAdd.show();
       });
 
@@ -288,6 +289,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 $scope.smellData.strength = 3;
                 $scope.smellData.dynamicness = 3;
                 $scope.smellData.likeability = 3;
+                $scope.smellData.visualisation = "";
                 $scope.modalAdd.show();
       });
 
@@ -308,8 +310,9 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
  
         $cordovaCamera.getPicture(options).then(function(imageData) {
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            $scope.smellData.visualisation = $scope.imgURI;
         }, function(err) {
-            // TODO: An error occured. Show a message to the user
+            alert("Sorry having issues with the camera.");
         });
     }
 

@@ -7,6 +7,7 @@ var bookshelf = require('bookshelf')(knex);
 var bodyParser = require('body-parser');
 var Promise = require('bluebird');
 var models = require('./server/models')(bookshelf);
+var categorising = require('./server/categorising');
 var url = require('url');
 var forecast = require('forecast');
 
@@ -96,7 +97,13 @@ app.get('/users/:userId', function(req, res) {
 app.post('/smells', function(req, res) {
   var addSmell = new models.Smell(req.body);
 
+  // TODO store image in S3 and add path to variable. 
+  // addSmell.attributes.visualisation is where the local path of image is. 
+
   addSmell.attributes.date = new Date();
+
+  var category = categorising.assignCategory(addSmell.attributes.description)
+  addSmell.attributes.categoryid = category;
 
   forcaster.get([addSmell.attributes.latitude, addSmell.attributes.longitude], function(err, weather) {
     if(err) {
