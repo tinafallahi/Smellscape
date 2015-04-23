@@ -17,7 +17,7 @@ var userSchema = {
 describe('/api/users', function() {
 
   it('returns all users as JSON', function(done) {
-    api.get('/api/users')
+    api.get('/users')
     .expect(200)
     .expect('Content-Type', /json/)
     .end(function(err, res) {

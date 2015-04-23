@@ -1,0 +1,26 @@
+.animation-fade {
+    &, &.ng-hide-remove {
+        z-index: 1;
+    }
+    &.ng-hide-add {
+        z-index: 0;
+    }
+    &.ng-hide-add, &.ng-hide-remove {
+        -webkit-transition: 1s linear all;
+        -moz-transition: 1s linear all;
+        -o-transition: 1s linear all;
+        transition: 1s linear all;
+        display: block !important;
+    }
+    &.ng-hide-add, &.ng-hide-remove.ng-hide-remove-active {
+        opacity: 1;
+    }
+    &.ng-hide-add.ng-hide-add-active, &.ng-hide-remove {
+        opacity: 0;
+        position: absolute;
+    }
+    &.ng-hide-add.ng-hide-add-active {
+        z-index: 0;
+        position: absolute;
+    }
+}

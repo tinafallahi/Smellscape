@@ -38,7 +38,12 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 })
 
 .controller('InfoCtrl', function($scope, auth, $state, store) {
-    // Load three images
+    $scope.slides = [ '../img/info1.jpg', '../img/info2.jpg', '../img/info3.jpg'];
+
+    $scope.gallerycontent = {
+      template: '../templates/gallery.html',
+      count: $scope.slides.length
+    };
 })
 
 .controller('AppCtrl', function($scope, $ionicModal, $state) {
