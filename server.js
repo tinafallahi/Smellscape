@@ -85,17 +85,6 @@ app.get('/users', function(req, res) {
     });
 });
 
-app.get('/users/:userId', function(req, res) {
-  new models.User({userid: 1})
-    .fetch()
-    .then(function (user) {
-      res.send(user.toJSON());
-    }).catch(function (error) {
-      logger.error(error);
-      res.send('An error occured');
-    });
-});
-
 app.post('/smells', function(req, res) {
   var addSmell = new models.Smell(req.body);
 

@@ -1,0 +1,294 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'wd' ]
+2 info using npm@2.8.3
+3 info using node@v0.10.35
+4 verbose node symlink /usr/local/bin/node
+5 verbose install initial load of /Users/tinafallahi/Smellscape/package.json
+6 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/aws-sdk/package.json
+7 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/bluebird/package.json
+8 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/body-parser/package.json
+9 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/bookshelf/package.json
+10 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/bower/package.json
+11 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/chai/package.json
+12 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/chai-json-schema/package.json
+13 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/chalk/package.json
+14 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/ejs/package.json
+15 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/express/package.json
+16 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/forecast/package.json
+17 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/fs/package.json
+18 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt/package.json
+19 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt-contrib-clean/package.json
+20 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt-contrib-jshint/package.json
+21 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt-contrib-nodeunit/package.json
+22 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt-contrib-uglify/package.json
+23 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt-istanbul/package.json
+24 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt-mocha-istanbul/package.json
+25 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/grunt-mocha-test/package.json
+26 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/gulp/package.json
+27 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/gulp-concat/package.json
+28 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/gulp-minify-css/package.json
+29 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/gulp-rename/package.json
+30 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/gulp-sass/package.json
+31 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/gulp-util/package.json
+32 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/istanbul/package.json
+33 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/knex/package.json
+34 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/lodash/package.json
+35 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/mocha/package.json
+36 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/mysql/package.json
+37 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/nue/package.json
+38 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/path/package.json
+39 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/pg/package.json
+40 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/request/package.json
+41 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/shelljs/package.json
+42 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/supertest/package.json
+43 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/wd/package.json
+44 verbose installManyTop reading scoped package data from /Users/tinafallahi/Smellscape/node_modules/when/package.json
+45 warn package.json fs@0.0.2 fs is also the name of a node core module.
+46 warn package.json fs@0.0.2 No description
+47 warn package.json fs@0.0.2 No repository field.
+48 warn package.json fs@0.0.2 No README data
+49 warn package.json path@0.11.14 path is also the name of a node core module.
+50 verbose readDependencies loading dependencies from /Users/tinafallahi/Smellscape/package.json
+51 verbose install wd is installed as 0.3.11
+52 silly cache add args [ 'wd', null ]
+53 verbose cache add spec wd
+54 silly cache add parsed spec { raw: 'wd',
+54 silly cache add   scope: null,
+54 silly cache add   name: 'wd',
+54 silly cache add   rawSpec: '',
+54 silly cache add   spec: '*',
+54 silly cache add   type: 'range' }
+55 silly addNamed wd@*
+56 verbose addNamed "*" is a valid semver range for wd
+57 silly addNameRange { name: 'wd', range: '*', hasData: false }
+58 silly mapToRegistry name wd
+59 silly mapToRegistry using default registry
+60 silly mapToRegistry registry https://registry.npmjs.org/
+61 silly mapToRegistry uri https://registry.npmjs.org/wd
+62 verbose addNameRange registry:https://registry.npmjs.org/wd not in flight; fetching
+63 verbose request uri https://registry.npmjs.org/wd
+64 verbose request no auth needed
+65 info attempt registry request try #1 at 10:47:04
+66 verbose request id 98347ed092bec240
+67 verbose etag "BKTOBCC7FXEED6LWT4JTGOTKH"
+68 http request GET https://registry.npmjs.org/wd
+69 http 304 https://registry.npmjs.org/wd
+70 silly get cb [ 304,
+70 silly get   { date: 'Thu, 30 Apr 2015 09:45:51 GMT',
+70 silly get     via: '1.1 varnish',
+70 silly get     'last-modified': 'Thu, 30 Apr 2015 09:45:49 GMT',
+70 silly get     'cache-control': 'max-age=60',
+70 silly get     etag: '"BKTOBCC7FXEED6LWT4JTGOTKH"',
+70 silly get     age: '2',
+70 silly get     connection: 'keep-alive',
+70 silly get     'x-served-by': 'cache-lhr6335-LHR',
+70 silly get     'x-cache': 'HIT',
+70 silly get     'x-cache-hits': '2',
+70 silly get     'x-timer': 'S1430387151.000264,VS0,VE0',
+70 silly get     vary: 'Accept' } ]
+71 verbose etag https://registry.npmjs.org/wd from cache
+72 verbose get saving wd to /Users/tinafallahi/.npm/registry.npmjs.org/wd/.cache.json
+73 silly addNameRange number 2 { name: 'wd', range: '*', hasData: true }
+74 silly addNameRange versions [ 'wd',
+74 silly addNameRange   [ '0.0.1',
+74 silly addNameRange     '0.0.2',
+74 silly addNameRange     '0.0.3',
+74 silly addNameRange     '0.0.4',
+74 silly addNameRange     '0.0.5',
+74 silly addNameRange     '0.0.6',
+74 silly addNameRange     '0.0.7',
+74 silly addNameRange     '0.0.8',
+74 silly addNameRange     '0.0.9',
+74 silly addNameRange     '0.0.10',
+74 silly addNameRange     '0.0.11',
+74 silly addNameRange     '0.0.12',
+74 silly addNameRange     '0.0.13',
+74 silly addNameRange     '0.0.14',
+74 silly addNameRange     '0.0.15',
+74 silly addNameRange     '0.0.16',
+74 silly addNameRange     '0.0.17',
+74 silly addNameRange     '0.0.18',
+74 silly addNameRange     '0.0.19',
+74 silly addNameRange     '0.0.20',
+74 silly addNameRange     '0.0.21',
+74 silly addNameRange     '0.0.22',
+74 silly addNameRange     '0.0.23',
+74 silly addNameRange     '0.0.24',
+74 silly addNameRange     '0.0.25',
+74 silly addNameRange     '0.0.26',
+74 silly addNameRange     '0.0.27',
+74 silly addNameRange     '0.0.28',
+74 silly addNameRange     '0.0.29',
+74 silly addNameRange     '0.0.30',
+74 silly addNameRange     '0.0.31',
+74 silly addNameRange     '0.0.32',
+74 silly addNameRange     '0.0.33',
+74 silly addNameRange     '0.0.34',
+74 silly addNameRange     '0.1.0',
+74 silly addNameRange     '0.1.1',
+74 silly addNameRange     '0.1.2',
+74 silly addNameRange     '0.1.3',
+74 silly addNameRange     '0.1.4',
+74 silly addNameRange     '0.1.5',
+74 silly addNameRange     '0.2.0',
+74 silly addNameRange     '0.2.2',
+74 silly addNameRange     '0.2.3',
+74 silly addNameRange     '0.2.4',
+74 silly addNameRange     '0.2.5',
+74 silly addNameRange     '0.2.6',
+74 silly addNameRange     '0.2.7',
+74 silly addNameRange     '0.2.8',
+74 silly addNameRange     '0.2.9',
+74 silly addNameRange     '0.2.10',
+74 silly addNameRange     '0.2.11',
+74 silly addNameRange     '0.2.12',
+74 silly addNameRange     '0.2.13',
+74 silly addNameRange     '0.2.14',
+74 silly addNameRange     '0.2.15',
+74 silly addNameRange     '0.2.16',
+74 silly addNameRange     '0.2.17',
+74 silly addNameRange     '0.2.18',
+74 silly addNameRange     '0.2.19',
+74 silly addNameRange     '0.2.20',
+74 silly addNameRange     '0.2.21',
+74 silly addNameRange     '0.2.22',
+74 silly addNameRange     '0.2.23',
+74 silly addNameRange     '0.2.24',
+74 silly addNameRange     '0.2.25',
+74 silly addNameRange     '0.2.26',
+74 silly addNameRange     '0.2.27',
+74 silly addNameRange     '0.3.0',
+74 silly addNameRange     '0.3.1',
+74 silly addNameRange     '0.3.2',
+74 silly addNameRange     '0.3.3',
+74 silly addNameRange     '0.3.4',
+74 silly addNameRange     '0.3.5',
+74 silly addNameRange     '0.3.6',
+74 silly addNameRange     '0.3.7',
+74 silly addNameRange     '0.3.8',
+74 silly addNameRange     '0.3.9',
+74 silly addNameRange     '0.3.10',
+74 silly addNameRange     '0.3.11' ] ]
+75 silly addNamed wd@0.3.11
+76 verbose addNamed "0.3.11" is a plain semver version for wd
+77 silly cache afterAdd wd@0.3.11
+78 verbose afterAdd /Users/tinafallahi/.npm/wd/0.3.11/package/package.json not in flight; writing
+79 verbose afterAdd /Users/tinafallahi/.npm/wd/0.3.11/package/package.json written
+80 silly install resolved [ { name: 'wd',
+80 silly install resolved     description: 'WebDriver/Selenium 2 node.js client',
+80 silly install resolved     keywords: [ 'testing', 'automation', 'webdriver', 'webdriverjs', 'selenium' ],
+80 silly install resolved     version: '0.3.11',
+80 silly install resolved     author: { name: 'Adam Christian', email: 'adam.christian@gmail.com' },
+80 silly install resolved     contributors:
+80 silly install resolved      [ [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object],
+80 silly install resolved        [Object] ],
+80 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/admc/wd.git' },
+80 silly install resolved     licenses: [ [Object] ],
+80 silly install resolved     bugs: { url: 'https://github.com/admc/wd/issues' },
+80 silly install resolved     engines: [ 'node' ],
+80 silly install resolved     main: './lib/main',
+80 silly install resolved     bin: { wd: './lib/bin.js' },
+80 silly install resolved     directories: { lib: './lib' },
+80 silly install resolved     dependencies:
+80 silly install resolved      { archiver: '~0.12.0',
+80 silly install resolved        async: '~0.9.0',
+80 silly install resolved        lodash: '~2.4.1',
+80 silly install resolved        q: '~1.0.1',
+80 silly install resolved        request: '~2.46.0',
+80 silly install resolved        'underscore.string': '~2.3.3',
+80 silly install resolved        vargs: '~0.1.0' },
+80 silly install resolved     devDependencies:
+80 silly install resolved      { 'bdd-with-opts': '~1.0.0',
+80 silly install resolved        chai: '~1.9.1',
+80 silly install resolved        'chai-as-promised': '~4.1.1',
+80 silly install resolved        colors: '~1.0.3',
+80 silly install resolved        dox: '~0.5.1',
+80 silly install resolved        express: '~4.10.0',
+80 silly install resolved        gulp: '~3.8.1',
+80 silly install resolved        'gulp-jshint': '~1.8.4',
+80 silly install resolved        hbs: '~2.7.0',
+80 silly install resolved        'http-proxy': '~1.5.3',
+80 silly install resolved        imageinfo: '~1.0.4',
+80 silly install resolved        istanbul: '~0.3.0',
+80 silly install resolved        jshint: '~2.5.1',
+80 silly install resolved        'jshint-stylish': '~1.0.0',
+80 silly install resolved        mocha: '~2.0.1',
+80 silly install resolved        mu2: '~0.5.20',
+80 silly install resolved        nock: '~0.48.0',
+80 silly install resolved        'node-uuid': '~1.4.1',
+80 silly install resolved        'promise-simple': '~0.1.0',
+80 silly install resolved        'run-sequence': '~1.0.1',
+80 silly install resolved        'sauce-connect-launcher': '~0.6.0',
+80 silly install resolved        'spawn-mocha-parallel': '~1.0.0',
+80 silly install resolved        'sv-selenium': '~0.2.5',
+80 silly install resolved        yargs: '~1.3.1' },
+80 silly install resolved     scripts: { test: 'make test', test_sauce: 'make test_e2e_sauce' },
+80 silly install resolved     gitHead: '7d1b543869287fe2df80e6ede1c1931e9478b1cf',
+80 silly install resolved     homepage: 'https://github.com/admc/wd',
+80 silly install resolved     _id: 'wd@0.3.11',
+80 silly install resolved     _shasum: '522716c79a7a10e781acbb2c6cafe588f701fcc0',
+80 silly install resolved     _from: 'wd@*',
+80 silly install resolved     _npmVersion: '1.4.28',
+80 silly install resolved     _npmUser: { name: 'sebv', email: 'seb.vincent@gmail.com' },
+80 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+80 silly install resolved     dist:
+80 silly install resolved      { shasum: '522716c79a7a10e781acbb2c6cafe588f701fcc0',
+80 silly install resolved        tarball: 'http://registry.npmjs.org/wd/-/wd-0.3.11.tgz' },
+80 silly install resolved     _resolved: 'https://registry.npmjs.org/wd/-/wd-0.3.11.tgz',
+80 silly install resolved     readme: 'ERROR: No README data found!' } ]
+81 info install wd@0.3.11 into /Users/tinafallahi/Smellscape
+82 info installOne wd@0.3.11
+83 verbose installOne of wd to /Users/tinafallahi/Smellscape not in flight; installing
+84 verbose lock using /Users/tinafallahi/.npm/_locks/wd-7f61526a9fbf2d90.lock for /Users/tinafallahi/Smellscape/node_modules/wd
+85 silly install write writing wd 0.3.11 to /Users/tinafallahi/Smellscape/node_modules/wd
+86 verbose unbuild node_modules/wd
+87 info preuninstall wd@0.3.11
+88 info uninstall wd@0.3.11
+89 verbose unbuild rmStuff wd@0.3.11 from /Users/tinafallahi/Smellscape/node_modules
+90 silly gentlyRm /Users/tinafallahi/Smellscape/node_modules/.bin/wd is being gently removed
+91 silly gentlyRm verifying /Users/tinafallahi/Smellscape is an npm working directory
+92 silly gentlyRm containing path /Users/tinafallahi/Smellscape is under npm's control, in /Users/tinafallahi/Smellscape
+93 silly gentlyRm deletion target /Users/tinafallahi/Smellscape/node_modules/.bin/wd is under /Users/tinafallahi/Smellscape
+94 verbose gentlyRm vacuuming from /Users/tinafallahi/Smellscape/node_modules/.bin/wd up to /Users/tinafallahi/Smellscape
+95 silly vacuum-fs removing /Users/tinafallahi/Smellscape/node_modules/.bin/wd
+96 silly vacuum-fs quitting because other entries in /Users/tinafallahi/Smellscape/node_modules/.bin
+97 info postuninstall wd@0.3.11
+98 silly gentlyRm /Users/tinafallahi/Smellscape/node_modules/wd is being purged from base /Users/tinafallahi/Smellscape
+99 verbose gentlyRm don't care about contents; nuking /Users/tinafallahi/Smellscape/node_modules/wd
+100 silly vacuum-fs purging /Users/tinafallahi/Smellscape/node_modules/wd
+101 verbose unlock done using /Users/tinafallahi/.npm/_locks/wd-7f61526a9fbf2d90.lock for /Users/tinafallahi/Smellscape/node_modules/wd
+102 verbose stack Error: EACCES, unlink '/Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid'
+103 verbose cwd /Users/tinafallahi/Smellscape
+104 error Darwin 14.3.0
+105 error argv "node" "/usr/local/bin/npm" "install" "wd"
+106 error node v0.10.35
+107 error npm  v2.8.3
+108 error path /Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid
+109 error code EACCES
+110 error errno 3
+111 error Error: EACCES, unlink '/Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid'
+111 error  { [Error: EACCES, unlink '/Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid']
+111 error   errno: 3,
+111 error   code: 'EACCES',
+111 error   path: '/Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid' }
+112 error Please try running this command again as root/Administrator.
+113 verbose exit [ 3, true ]
+114 verbose unbuild node_modules/wd
+115 silly gentlyRm /Users/tinafallahi/Smellscape/node_modules/wd is being purged from base /Users/tinafallahi/Smellscape
+116 verbose gentlyRm don't care about contents; nuking /Users/tinafallahi/Smellscape/node_modules/wd
+117 silly vacuum-fs purging /Users/tinafallahi/Smellscape/node_modules/wd
+118 error error rolling back Error: EACCES, unlink '/Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid'
+118 error error rolling back  { [Error: EACCES, unlink '/Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid']
+118 error error rolling back   errno: 3,
+118 error error rolling back   code: 'EACCES',
+118 error error rolling back   path: '/Users/tinafallahi/Smellscape/node_modules/wd/node_modules/request/node_modules/.bin/uuid' }

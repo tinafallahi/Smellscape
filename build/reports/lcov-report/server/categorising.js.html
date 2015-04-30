@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for server/categorising.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">server/categorising.js</span></h1>
+    <h2>
+        Statements: <span class="metric">68.52% <small>(37 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">47.06% <small>(16 / 34)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(1 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">68.52% <small>(37 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">server/</a> &#187; categorising.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Categories: "TR", "ID", "FD", "SK", "CL", "SY", "WS", "HU", "NT", "CN", "NF", "EM"
+&nbsp;
+var tr = ["car", "bus", "lorry", "tram", "train", "fumes", "traffic", "rubber", "tire", "tyre", "fuel", "gasonline", "petrol"];
+&nbsp;
+var id = ["brewery", "factory", "industry", "chemical", "abbatoir", "sewage", "nail salon", "hair salon", "hairdresser", "dry cleaning", "coal", "solvent"];
+&nbsp;
+var fd = ["vanilla", "fried", "doughnut", "popcorn", "clove", "wine", "blackberry", "lemon", "crepe", "waffle", "fig", "pancake", "caramel", "eggs", "tomato", "food"];
+&nbsp;
+var sk = ["cigarette", "cigar", "smoke", "roll-up", "pipe", "marijuana", "tobacco"];
+&nbsp;
+var cl = ["bleach", "cleaning", "cleansing", "cleaner"]; 
+&nbsp;
+var sy = ["air freshener", "scented candle", "scented product", "medecine", "doctor", "dentist"];
+&nbsp;
+var ws = ["bin", "litter", "public toilet", "urine", "faeces", "excrement", "vomit", "trash", "garbage", "rubbish"];
+&nbsp;
+var hu = ["body", "human", "BO", "body odour", "fart", "flatulance", "smokers", "perfume", "aftershave", "urine", "faeces", "shit", "excrement", "animal", "fur",
+"hair", "armpit", "fox", "dog", "cat", "person", "piss", "vomit", "man", "woman", "child", "kid"];
+&nbsp;
+var nt = ["tree", "blossom", "flower", "plant", "fresh air", "soil", "dirt", "mud", "sea", "canal", "river", "waterway", "stream", "grass", "hay", "straw", "leaf", "petal",
+"oxygen", "ozone", "rain", "droppings", "jasmine", "guano", "hydraenga", "orchid", "lemon", "blackberry", "cauliflower", "lime", "pine", "juniper", "cypress", "humid", 
+"moisture", "stone", "countryside", "fungal", "mushrooms"];
+&nbsp;
+var cn = ["drain", "dust", "plaster", "wood", "metal", "construction", "paint", "varnish", "building"];
+&nbsp;
+var nf = ["cardboard", "leather", "paper", "plastic", "new clothes", "shoes", "incense", "tannin", "lipstick", "metal", "wood"]; 
+&nbsp;
+var em = ["anger", "fear", "sadness", "disgust", "surprise", "anticipation", "trust", "joy"];
+&nbsp;
+module.exports = {
+  assignCategory: function (description) {
+    var punctuationless = description.replace(/[\.,-\/#!$%\^&amp;\*;:{}=\-_`~()]/g,"");
+    var lowercase = punctuationless.toLowerCase();
+    var words = lowercase.split(" ");
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(words.length &gt;= 3){
+<span class="cstat-no" title="statement not covered" >      return "CX";</span>
+    }
+&nbsp;
+    var count = 0;
+    var categories = [];
+    for(var i = 0; i &lt; words.length; i++) {
+      if(tr.indexOf(words[i]) !== -1) {
+        categories.push("TR");
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (id.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("ID");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (fd.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("FD");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (sk.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("SK");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (cl.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("CL");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (sy.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("SY");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (ws.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("WS");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (hu.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("HU");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (nt.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("NT");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (cn.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("CN");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (nf.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("NF");</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (em.indexOf(words[i]) !== -1) {
+<span class="cstat-no" title="statement not covered" >        categories.push("EM");</span>
+      } 
+      count ++;
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(categories.length === 0) {
+<span class="cstat-no" title="statement not covered" >      return "NA";</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if(categories.length === 1) {
+      return categories[0];
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if(categories.length === 2) {</span>
+<span class="cstat-no" title="statement not covered" >      if(categories[0] === categories[1]) {</span>
+<span class="cstat-no" title="statement not covered" >        return categories[0];</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        return "CX";</span>
+      }
+    }
+  }
+};</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 29 2015 22:13:36 GMT+0100 (BST)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

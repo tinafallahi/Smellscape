@@ -23,7 +23,7 @@ exports.debug = function() {
   }
 };
 
-exports.info = function() {
+/*exports.info = function() {
   if (DEBUG) {
     console.log.apply(console, ["[info]"].concat(Array.prototype.slice.call(arguments, 0)));
   }
@@ -35,4 +35,4 @@ exports.warn = function() {
 
 exports.error = function() {
   console.log.apply(console, ["[ERROR]"].concat(Array.prototype.slice.call(arguments, 0)));
-};
+};*/
