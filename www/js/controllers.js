@@ -380,7 +380,7 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
 })
 
 .controller('WalksCtrl', function($scope, $ionicModal, $timeout, Walk, Smell, Point, Comment, leafletData, geolocation, store, $state) {
-  $scope.pickButton = true; 
+  $scope.pickButton = false; 
   $scope.addButton = false; 
   $scope.quitButton = false; 
   $scope.map = {
@@ -437,7 +437,13 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
             icon: local_icons.smellIcon
           });
         }
+        $scope.walks = Walk.query();
+    $scope.walks.$promise.then(function(data) {
+      $scope.walkslistModal.show();
+    });
       });
+
+    
 
     $ionicModal.fromTemplateUrl('templates/walklist.html', {
         scope: $scope
@@ -510,12 +516,6 @@ angular.module('starter.controllers', ['ionic', 'starter.services', 'leaflet-dir
                 $scope.smellData.likeability = 3;
                 $scope.modalAdd.show();
       });
-
-    $scope.walks = Walk.query();
-
-    $scope.pickWalk = function () {
-      $scope.walkslistModal.show();
-    };
 
     $scope.shareOnFb = function () {
       /*openFB.api({

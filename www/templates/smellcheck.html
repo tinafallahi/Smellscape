@@ -2,14 +2,20 @@
   <ion-content>
     <form>
       <div class="list">
+        <label class="item page-title">
+          <span class="title smell-summary">SMELL SUMMARY</span>
+        </label>
         <label class="item smell-name">
-    		<span class="title smell-name">HERE I SMELL:</span>
-        <span> <p> {{smell.description}} </p> </span>
+    		<span class="title smell-name">HERE I SMELL</span>
+        <div class="smell-name-check">
     		<input class="input smell-name" type="text" ng-model="smellData.description"readonly>
+        </div>
         </label>
         <label class="item">
     		<span class="title smell-assoc">SMELL ASSOCIATION</span>
+        <div class="smell-assoc-check">
     		<textarea class=" input smell-assoc" rows="4" ng-model="smellData.association" readonly></textarea>
+        </div>
         </label>
         <button class="edit" ng-click="backToEdit()"></button>
         <button class="submit" ng-click="submitSmell()"></button>

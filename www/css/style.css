@@ -1,4 +1,6 @@
 /* GENERAL STYLES */
+*{font-family:Universe;}
+
 .pane {
     background: url("../img/bg.png");
     background-attachment:fixed;
@@ -53,6 +55,7 @@
 
 .welcome-bar {
 	height: 80px;
+	width: auto;
   	background-image: url("../img/welcomebar.jpg");
   	background-repeat: no-repeat center center fixed;
   	background-size: 100% 100%;
@@ -95,49 +98,12 @@
   float: center;
 }
 
-.home-add-text {
-  height: 15px;
-  width: 100px;
-  margin-left: 33%;
-  margin-top: 1px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  background-image: url("../img/home-add-text.png");
-  background-repeat: no-repeat center center fixed;
-  background-size: 100% 100%;
-  border: 0px solid;
-}
-
-.home-find-text {
-  height: 15px;
-  width: 100px;
-  margin-left: 33%;
-  margin-top: 1px;
-  padding-top: 0px;
-  background-image: url("../img/find-text-home.png");
-  background-repeat: no-repeat center center fixed;
-  background-size: 100% 100%;
-  border: 0px solid;
-}
-
-.home-walks-text {
-  height: 15px;
-  width: 100px;
-  margin-left: 33%;
-  margin-top: 1px;
-  padding-top: 0px;
-  background-image: url("../img/walks-text-home.png");
-  background-repeat: no-repeat center center fixed;
-  background-size: 100% 100%;
-  border: 0px solid;
-}
-
 .home-add-button {
   height: 50px;
-  width: 50px;
+  width: 63px;
   margin-left: 40%;
-  margin-bottom: 1px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   padding-top: 0px;
   background-image: url("../img/add-smell-home.png");
   background-color: Transparent;
@@ -148,9 +114,10 @@
 
 .home-find-button {
   height: 50px;
-  width: 50px;
+  width: 68px;
   margin-left: 40%;
-  margin-bottom: 1px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   padding-top: 0px;
   background-image: url("../img/find-smell-home.png");
   background-color: Transparent;
@@ -160,10 +127,11 @@
 }
 
 .home-walks-button {
-  height: 50px;
+  height: 69px;
   width: 50px;
   margin-left: 40%;
-  margin-bottom: 1px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   padding-top: 0px;
   background-image: url("../img/walks-home.png");
   background-color: Transparent;
@@ -183,17 +151,22 @@ legend {
   font-size: 17px;
 }
 
-.field.smell-name {
-  padding-right: 1px;
-  padding-bottom: 1px;
-  padding-left: 1px;
-  padding-top: 1px;
-}
-
 .title.smell-name {
   border: 0px solid;
-  width: 30%;
+  width: 32%;
   color: #0E1025;
+}
+
+.smell-name-check {
+	border-radius: 3px;
+	 border-style: solid;
+    border-width: 1px;
+}
+
+.smell-assoc-check {
+	border-radius: 3px;
+	 border-style: solid;
+    border-width: 1px;
 }
 
 .input.smell-name {
@@ -201,9 +174,19 @@ legend {
   color: #E05346;
 }
 
-.title.smell-assoc {
+.title.smell-summary {
+  padding:0;
   border: 0px solid;
-  width: 46%;
+  width: 50%;
+  height: 50px;
+  color: #0E1025;
+}
+
+.title.smell-assoc {
+  padding:0;
+  border: 0px solid;
+  width: 50%;
+  height: 50px;
   color: #0E1025;
 }
 
@@ -237,7 +220,7 @@ legend {
 
 .done {
   height: 30px;
-  width: 35px;
+  width: 44px;
   margin-left: 5%;
   margin-top: 2%;
   background-image: url("../img/done.png");
@@ -249,7 +232,7 @@ legend {
 
 .cancel {
   height: 30px;
-  width: 35px;
+  width: 30px;
   margin-left: 70%;
   background-image: url("../img/cancel.png");
   background-repeat: no-repeat center center fixed;
@@ -260,7 +243,7 @@ legend {
 
 .edit {
   height: 40px;
-  width: 45px;
+  width: 35px;
   margin-left: 50%;
   margin-top: 2%;
   background-image: url("../img/edit.png");
@@ -272,7 +255,7 @@ legend {
 
 .submit {
   height: 30px;
-  width: 100px;
+  width: 118px;
   margin-left: 5%;
   margin-top: 2%;
   background-image: url("../img/submit.png");
@@ -478,13 +461,23 @@ legend {
 }
 
 .walk.addsmell.button {
-  border: 0px solid;
+  height: 30px;
+  width: 55px;
+  margin-left: 10%;
+  background-image: url("../img/add-smell.png");
+  background-repeat: no-repeat center center fixed;
   background-color: Transparent;
-  color: #E05346;
+  background-size: 100% 100%;
+  border: 0px solid;
 }
 
 .walk.quitwalk.button {
-  border: 0px solid;
+  height: 30px;
+  width: 55px;
+  margin-left: 10%;
+  background-image: url("../img/quit-walk.png");
+  background-repeat: no-repeat center center fixed;
   background-color: Transparent;
-  color: #E05346;
+  background-size: 100% 100%;
+  border: 0px solid;
 }
