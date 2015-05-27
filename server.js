@@ -25,7 +25,7 @@ var logger = {
 
 var forcaster = new forecast({
   service: 'forecast.io',
-  key: '3edd9fe60b9ffe8a69c5c2fe9fd4b479',
+  key: '4faa3fc6e60fa0700fa5e36bcadb1a00',
   cache: true,      
   ttl: {            // Results are cached for this long. 
     minutes: 60,
